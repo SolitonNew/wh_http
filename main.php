@@ -1,0 +1,147 @@
+<?php
+    $sql = 'select * from plan_parts order by NAME, ORDER_NUM';
+    $groups = $pdo->query($sql)->fetchAll();
+    
+    $sql = 'select * from core_variables';
+    $variables = $pdo->query($sql)->fetchAll();
+    
+    $groupList = [];
+    
+    function printItem($parentID, &$groups, $level, &$groupList) {
+        for ($i = 0; $i < count($groups); $i++) {
+            $row = $groups[$i];
+            if ($row['PARENT_ID'] == $parentID) {
+                switch ($level) {
+                    case 0:
+                        break;
+                    case 1:
+                    case 2:
+                        $groupList[] = ['level' => $level, 'row' => $row];
+                        break;
+                }                
+                printItem($row['ID'], $groups, $level + 1, $groupList);
+            }            
+        }        
+    }
+    
+    function findVariable($roomID, $roomNameUpper, &$variables) {
+        $res = [];
+        for ($i = 0; $i < count($variables); $i++) {
+            $var = $variables[$i];
+            if ($var['GROUP_ID'] == $roomID) {
+                if (mb_strtoupper(mb_substr($var['COMM'], 0, mb_strlen($roomNameUpper))) == $roomNameUpper) {
+                    $res[] = $var;
+                }
+            }
+        }
+        return $res;
+    }
+    
+    printItem(null, $groups, 0, $groupList);   
+    
+    $listStart = false;
+    
+    for ($i = 0; $i < count($groupList); $i++) {
+        $row = $groupList[$i]['row'];
+        if ($groupList[$i]['level'] == 1) {
+?>
+<?php if ($listStart) { ?>
+</div>
+<div style="margin-top: 1rem;"></div>
+<?php } ?>
+<div class="row list-group list-group-flush">
+    <div class="alert alert-light" role="alert" style="margin-bottom: 0px;">
+        <?php print($row['NAME']); $listStart = true; ?>
+    </div>
+<?php
+        } else {
+            $roomNameUpper = mb_strtoupper($row['NAME']);
+                
+            $vars = findVariable($row['ID'], $roomNameUpper, $variables);
+            
+            if (count($vars) > 0) {
+                $temperature_id = -1;
+                $temperature_val = 0;
+
+                $switch_1_id = -1;
+                $switch_1_val = 1;
+
+                $switch_2_id = -1; 
+                $switch_2_val = 1;
+
+                foreach ($vars as $v) {
+                    switch ($v['APP_CONTROL']) {
+                        case 4:                       
+                            if (mb_strtoupper($v['COMM']) == $roomNameUpper) {
+                                $temperature_id = $v['ID'];
+                                $temperature_val = $v['VALUE'];
+                            }
+                            break;
+                        case 1:
+                            if (mb_strtoupper($v['COMM']) == $roomNameUpper) {
+                                $switch_1_id = $v['ID'];
+                                $switch_1_val = $v['VALUE'];
+                            } else
+                            if (mb_strtoupper($v['COMM']) == $roomNameUpper.' НОЧНИК') {
+                                $switch_2_id = $v['ID'];
+                                $switch_2_val = $v['VALUE'];
+                            }
+                            break;
+                    }
+                }
+            
+?>
+<div class="list-group-item main-item">
+    <a href="index.php?page=room&roomID=<?php print($row['ID']); ?>"><?php print($row['NAME']); ?></a>
+    <?php
+    if ($temperature_id > -1) {
+    ?>
+    <div id="variable_<?php print($temperature_id); ?>" class="main-item-value" app_control="1">
+        <span class="main-item-value-text"><?php print($temperature_val); ?></span><span class="main-item-value-label">°C</span>
+    </div>
+    <?php
+    }
+    if ($switch_1_id > -1) {
+    ?>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" app_control="2"
+               id="variable_<?php print($switch_1_id); ?>" <?php if ($switch_1_val > 0) { print('checked=""'); } ?> >
+        <label class="custom-control-label" for="variable_<?php print($switch_1_id); ?>"></label>
+    </div>
+    <?php
+    }
+    if ($switch_2_id > -1) {
+    ?>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" app_control="2"
+               id="variable_<?php print($switch_2_id); ?>" <?php if ($switch_2_val > 0) { print('checked=""'); } ?> >
+        <label class="custom-control-label" for="variable_<?php print($switch_2_id); ?>"></label>
+    </div>    
+    <?php
+    }
+    ?>
+</div>
+<?php
+            }
+        } 
+    }
+?>
+<?php if ($listStart) { ?>
+</div>
+<?php } ?>
+
+<script>
+    function variableOnChanged(varID, varValue, varTime) {
+        var v = $('#variable_' + varID);
+        switch (v.attr('app_control')) {
+            case '1':
+                $('.main-item-value-text', v).text(varValue);
+                break;
+            case '2':
+                v.prop('checked', parseInt(varValue) > 0);
+                break;
+        }
+    }
+</script>
+
+<?php

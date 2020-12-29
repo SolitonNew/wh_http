@@ -1,0 +1,76 @@
+body {
+    font-size: 16px;
+    font-family: 'Arial';
+    padding-bottom: 1rem;
+}
+
+.main-item {
+    display: flex;
+}
+
+.main-item a {
+    flex-grow: 1;
+}
+
+.main-item-value {
+    padding-right: 0.5rem;
+}
+
+.room-item {
+    display: flex;
+}
+
+.room-item-name {
+    flex-grow: 1;
+    display: flex;
+    line-height: 1.25rem;
+    padding: 0.2rem 0px;
+}
+
+.room-item-name a {
+    flex-grow: 1;
+}
+
+.room-text-value {
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+}
+
+.room-item-variable-value {
+    font-size: 1.5rem;
+    display: block;
+    margin: -3rem 0px;
+}
+
+.room-item-variable-value {
+    display: block;
+}
+
+.room-range {
+    padding-top: 0.75rem;
+}
+
+.variable-chart {
+    margin: -1rem;
+    margin-top: 0px;
+    margin-right: -1.5rem;
+}
+
+.variable-3-body {
+    
+}
+
+.variable-3-value {
+    text-align: center;
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
+}
+
+.variable-3-value-text {
+    font-size: 7rem;
+}
+
+.variable-3-value-dimension {
+    font-size: 2rem;
+}
