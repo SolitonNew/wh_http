@@ -10,7 +10,7 @@ function decodeAppControl($app_control) {
     $resolution = '';
     $varMin = 0;
     $varMax = 10;
-    $varStep = 0;    
+    $varStep = 1;    
     switch ($app_control) {
         case 1: // Лампочка
             $control = 'СВЕТ';
