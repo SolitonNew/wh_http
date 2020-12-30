@@ -174,6 +174,9 @@ foreach ($rows as $row) {
                         max: chartMaxTime,
                     },
                 }]
+            },
+            tooltips: {
+                enabled: false,
             }
         }
     });
