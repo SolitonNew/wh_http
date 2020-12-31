@@ -207,6 +207,7 @@ foreach ($rows as $row) {
     function chartAppendChanges(varID, varValue, varTime) {
         for (let i = 0; i < chartList.length; i++) {
             if (chartList[i].id == varID) {
+                console.log(varTime, varValue);
                 chartList[i].chart.data.datasets[0].data.push({
                     x: varTime,
                     y: varValue
