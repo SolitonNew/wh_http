@@ -29,7 +29,7 @@
     </div>
     
 <script>
-    $('document').ready(()=>{
+    $('document').ready(() => {
         $('.custom-control-input').on('change', (e) => {
             let obj = $(e.target);
             varID = obj.attr('id').substr(9);
@@ -53,7 +53,7 @@
         
         $(window).scroll((e) => {
             if ($('nav').length) {
-                if (this.pageYOffset > 0) {
+                if (this.pageYOffset > 5) {
                     $('body').addClass('fixed-nav');
                     $('#dummyNav').height($('nav').height());
                 } else {
