@@ -20,7 +20,7 @@ if (count($rows) > 0) {
     </ol>
 </nav>
 
-<div class="list-group">
+<div class="list-group row row-cols-1 row-cols-sm-2 row-cols-lg-3" style="flex-direction: row; padding: 0 1rem;">
 
 <?php
 
@@ -65,57 +65,56 @@ foreach ($rows as $row) {
         'step' => $varStep
     ]; 
     ?>
-<div class="list-group-item">
-    <div class="room-item">
-        <div class="room-item-name">
-            <?php if ($typ == 3) { ?>
-            <a href="index.php?page=variable&varID=<?php print($varID); ?>">
+    <div class="list-group-item" style="margin-right:-1px;margin-bottom:-1px;border-top-width:1px;">
+        <div class="room-item">
+            <div class="room-item-name">
+                <?php if ($typ == 3) { ?>
+                <a href="index.php?page=variable&varID=<?php print($varID); ?>">
+                <?php } ?>
+                <?php print($itemLabel); ?>
+                <?php if ($typ == 3) { ?>
+                </a>
+                <?php } ?>
+            </div>
+            <?php
+            if ($typ == 1) {
+            ?>
+            <div class="room-text-value" id="variable_<?php print($varID); ?>" app_control="1">
+                <span class="room-item-variable-value"><?php print($value); ?></span>
+                <span class="room-item-variable-label"><?php print($resolution); ?></span>
+            </div>
+            <?php
+            } else
+            if ($typ == 2) {
+            ?>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" app_control="2"
+                       id="variable_<?php print($varID); ?>" <?php if ($value > 0) { print('checked=""'); } ?> >
+                <label class="custom-control-label" for="variable_<?php print($varID); ?>"></label>
+            </div>
+            <?php
+            } else
+            if ($typ == 3) {
+            ?>
+            <div class="room-text-value" id="variable_<?php print($varID); ?>" app_control="3">
+                <span class="room-item-variable-value"><?php print($value); ?></span>
+                <span class="room-item-variable-label"><?php print($resolution); ?></span>
+            </div>
             <?php } ?>
-            <?php print($itemLabel); ?>
-            <?php if ($typ == 3) { ?>
-            </a>
-            <?php } ?>
         </div>
-        <?php
-        if ($typ == 1) {
+        <?php if ($typ == 1) { ?>
+        <div class="variable-chart">
+            <canvas id="chart_<?php print($row['DATA']['ID']); ?>" height="100"></canvas>
+        </div>
+        <?php 
+                $charts[] = $row['DATA']['ID'];
+            } 
         ?>
-        <div class="room-text-value" id="variable_<?php print($varID); ?>" app_control="1">
-            <span class="room-item-variable-value"><?php print($value); ?></span>
-            <span class="room-item-variable-label"><?php print($resolution); ?></span>
-        </div>
-        <?php
-        } else
-        if ($typ == 2) {
-        ?>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" app_control="2"
-                   id="variable_<?php print($varID); ?>" <?php if ($value > 0) { print('checked=""'); } ?> >
-            <label class="custom-control-label" for="variable_<?php print($varID); ?>"></label>
-        </div>
-        <?php
-        } else
-        if ($typ == 3) {
-        ?>
-        <div class="room-text-value" id="variable_<?php print($varID); ?>" app_control="3">
-            <span class="room-item-variable-value"><?php print($value); ?></span>
-            <span class="room-item-variable-label"><?php print($resolution); ?></span>
-        </div>
-        <?php } ?>
     </div>
-    <?php if ($typ == 1) { ?>
-    <div class="variable-chart">
-        <canvas id="chart_<?php print($row['DATA']['ID']); ?>" height="100"></canvas>
-    </div>
-    <?php 
-            $charts[] = $row['DATA']['ID'];
-        } 
-    ?>
-</div>
     <?php
 }
 ?>
 </div>
-
 
 <script type="text/javascript" src="js/Chart.min.js"></script>
 <script type="text/javascript" src="js/Chart.bundle.min.js"></script>

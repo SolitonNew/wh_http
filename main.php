@@ -1,3 +1,5 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+    
 <?php
     $sql = 'select * from plan_parts order by NAME, ORDER_NUM';
     $groups = $pdo->query($sql)->fetchAll();
@@ -46,10 +48,11 @@
         if ($groupList[$i]['level'] == 1) {
 ?>
 <?php if ($listStart) { ?>
+    </div>
 </div>
-<div style="margin-top: 1rem;"></div>
 <?php } ?>
-<div class="row list-group list-group-flush">
+<div class="col">
+<div class="list-group list-group-flush main-column" style="margin-bottom: 1rem;">
     <div class="alert alert-light" role="alert" style="margin-bottom: 0px;">
         <?php print($row['NAME']); $listStart = true; ?>
     </div>
@@ -127,6 +130,7 @@
     }
 ?>
 <?php if ($listStart) { ?>
+    </div>
 </div>
 <?php } ?>
 
@@ -144,4 +148,4 @@
     }
 </script>
 
-<?php
+</div>

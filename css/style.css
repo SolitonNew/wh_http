@@ -25,6 +25,17 @@ body {
     transition-duration: 0.25s;
 }
 
+.main-column {
+    
+}
+
+@media(max-width: 575px) {
+    .main-column {
+        margin: 0 -1rem;
+    }
+    
+}
+
 .main-item {
     display: flex;
 }
