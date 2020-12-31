@@ -19,7 +19,7 @@ body {
     display: block;
 }
 
-.fixed-nav nav > ol {
+.fixed-nav-offset nav > ol {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 0px;
 }

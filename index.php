@@ -15,7 +15,7 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.11">
+        <link rel="stylesheet" href="css/style.css?v=0.0.12">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
@@ -51,13 +51,19 @@
         
         loadChanges();
         
-        $(window).scroll((e) => {
+        $(window).on('resize', () => {
+            if ($('nav').length) {
+                $('body').addClass('fixed-nav');
+                $('#dummyNav').height($('nav').height());
+            }
+        }).resize();
+        
+        $(window).scroll(() => {
             if ($('nav').length) {
                 if (this.pageYOffset > 5) {
-                    $('body').addClass('fixed-nav');
-                    $('#dummyNav').height($('nav').height());
+                    $('body').addClass('fixed-nav-offset');
                 } else {
-                    $('body').removeClass('fixed-nav');
+                    $('body').removeClass('fixed-nav-offset');
                 }
             }
         }).scroll();
