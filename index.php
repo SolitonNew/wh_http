@@ -65,9 +65,9 @@
                 let values = JSON.parse(data);
                 for (let i = 0; i < values.length; i++) {
                     let rec = values[i];
-                    let varID = rec.VARIABLE_ID;
-                    let varValue = rec.VALUE;
-                    let varTime = rec.CHANGE_DATE;
+                    let varID = parseInt(rec.VARIABLE_ID);
+                    let varValue = parseFloat(rec.VALUE);
+                    let varTime = parseInt(rec.CHANGE_DATE);
                     lastVariableID = rec.ID;
                     
                     /* Call Event */
