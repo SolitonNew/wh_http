@@ -20,7 +20,8 @@
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
 <body>
-    <div class="container-fluid">
+    <div id="dummyNav"></div>
+    <div id="mainContainer" class="container-fluid">
     <?php 
         include 'utils.php';
         include 'router.php'; 
@@ -49,6 +50,17 @@
         });
         
         loadChanges();
+        
+        $(window).scroll((e) => {
+            if ($('nav').length) {
+                if (this.pageYOffset > 0) {
+                    $('body').addClass('fixed-nav');
+                    $('#dummyNav').height($('nav').height());
+                } else {
+                    $('body').removeClass('fixed-nav');
+                }
+            }
+        }).scroll();
     });
     
     let lastVariableID = <?php print($lastVariableID); ?>;

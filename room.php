@@ -15,7 +15,7 @@ if (count($rows) > 0) {
 
 <nav aria-label="breadcrumb">
     <ol class="row breadcrumb">
-        <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php print($groupTitle); ?></li>
     </ol>
 </nav>
@@ -207,7 +207,6 @@ foreach ($rows as $row) {
     function chartAppendChanges(varID, varValue, varTime) {
         for (let i = 0; i < chartList.length; i++) {
             if (chartList[i].id == varID) {
-                console.log(varTime, varValue);
                 chartList[i].chart.data.datasets[0].data.push({
                     x: varTime,
                     y: varValue
