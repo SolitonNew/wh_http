@@ -2,3 +2,8 @@
     Order Deny,Allow
     Deny From All
 </Files>
+
+AuthUserFile app/.htpasswd
+AuthType Basic
+AuthName «Secret Place»
+require valid-user
