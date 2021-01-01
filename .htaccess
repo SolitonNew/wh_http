@@ -1,6 +1,6 @@
 AuthType Basic
 AuthName "Thats protected Area!"
-AuthUserFile app/.htpasswd
+AuthUserFile /home/admin/wh/app/.htpasswd
 Require valid-user
 
 <Files .htaccess>
