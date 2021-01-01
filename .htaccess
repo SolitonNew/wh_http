@@ -3,7 +3,7 @@
     Deny From All
 </Files>
 
-<Directory /app>
+<Directory app>
     Order Deny,Allow
     Deny From All
-</DIrectory>
+</Directory>
