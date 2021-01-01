@@ -1,5 +1,5 @@
 <?php
-    include 'connection.php';
+    include 'app\connection.php';
     
     $sql = 'select max(ID) MAX_ID from core_variable_changes_mem';
     $d = $pdo->query($sql)->fetchAll();
@@ -23,8 +23,8 @@
     <div id="dummyNav"></div>
     <div id="mainContainer" class="container-fluid">
     <?php 
-        include 'utils.php';
-        include 'router.php'; 
+        include 'app\utils.php';
+        include 'app\router.php'; 
     ?>
     </div>
     

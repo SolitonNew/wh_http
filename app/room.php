@@ -69,7 +69,7 @@ foreach ($rows as $row) {
         <div class="room-item">
             <div class="room-item-name">
                 <?php if ($typ == 3) { ?>
-                <a href="index.php?page=variable&varID=<?php print($varID); ?>">
+                <a href="?page=variable&varID=<?php print($varID); ?>">
                 <?php } ?>
                 <?php print($itemLabel); ?>
                 <?php if ($typ == 3) { ?>

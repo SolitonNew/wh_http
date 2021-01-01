@@ -95,7 +95,7 @@
             
 ?>
 <div class="list-group-item main-item">
-    <a href="index.php?page=room&roomID=<?php print($row['ID']); ?>"><?php print($row['NAME']); ?></a>
+    <a href="?page=room&roomID=<?php print($row['ID']); ?>"><?php print($row['NAME']); ?></a>
     <?php
     if ($temperature_id > -1) {
     ?>
