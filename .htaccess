@@ -1,5 +1,5 @@
 AuthType Basic
-AuthName "Thats protected Area!"
+AuthName "Доступ ограничен"
 AuthUserFile /home/admin/wh/app/.htpasswd
 Require valid-user
 
