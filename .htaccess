@@ -1,4 +1,4 @@
-<Directory app>
+<Files .htaccess>
     Order Deny,Allow
-    Deny from All
-</Directory>
+    Deny From All
+</Files>
