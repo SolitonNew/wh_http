@@ -188,6 +188,8 @@ foreach ($rows as $row) {
 <?php
     }
 ?>
+    
+    let chartAutoscrollCounter = 0;
         
     function chartAutoScroll() {
         var chartMaxTime = (new Date()).getTime() + localDeltaTime + chartTimeOffset;
@@ -196,16 +198,24 @@ foreach ($rows as $row) {
         for (let i = 0; i < chartList.length; i++) {
             chartList[i].chart.options.scales.xAxes[0].ticks.min = chartMinTime;
             chartList[i].chart.options.scales.xAxes[0].ticks.max = chartMaxTime;
-            
-            for (let k = chartList[i].chart.data.datasets[0].data.length - 1; k > -1; k--) {
-                if (chartList[i].chart.data.datasets[0].data[k].x < chartMinTime) {
-                    chartList[i].chart.data.datasets[0].data.splice(0, k + 1);
-                    break;
+        
+            if (chartAutoscrollCounter == 0) {
+                for (let k = chartList[i].chart.data.datasets[0].data.length - 1; k > -1; k--) {
+                    if (chartList[i].chart.data.datasets[0].data[k].x < chartMinTime) {
+                        chartList[i].chart.data.datasets[0].data.splice(0, k);
+                        break;
+                    }
                 }
             }
             
             chartList[i].chart.update();
         }        
+        
+        chartAutoscrollCounter++;
+        if (chartAutoscrollCounter > 6) {
+            chartAutoscrollCounter = 0;
+        }
+        
         setTimeout(chartAutoScroll, 10000);
     }
     
