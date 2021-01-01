@@ -2,8 +2,3 @@
     Order Deny,Allow
     Deny From All
 </Files>
-
-<Directory /app/>
-    Order Deny,Allow
-    Deny From All
-</Directory>
