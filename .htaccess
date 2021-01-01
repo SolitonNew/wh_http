@@ -1,3 +1,8 @@
+AuthType Basic
+AuthName "Thats protected Area!"
+AuthUserFile app/.htpasswd
+Require valid-user
+
 <Files .htaccess>
     Order Deny,Allow
     Deny From All
