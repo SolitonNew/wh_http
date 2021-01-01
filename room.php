@@ -196,6 +196,14 @@ foreach ($rows as $row) {
         for (let i = 0; i < chartList.length; i++) {
             chartList[i].chart.options.scales.xAxes[0].ticks.min = chartMinTime;
             chartList[i].chart.options.scales.xAxes[0].ticks.max = chartMaxTime;
+            
+            for (let k = chartList[i].chart.data.datasets[0].data.length - 1; k > -1; k--) {
+                if (chartList[i].chart.data.datasets[0].data[k].x < chartMinTime) {
+                    chartList[i].chart.data.datasets[0].data.splice(0, k + 1);
+                    break;
+                }
+            }
+            
             chartList[i].chart.update();
         }        
         setTimeout(chartAutoScroll, 10000);
