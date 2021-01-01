@@ -1,0 +1,9 @@
+<Directory app>
+    Order Deny,Allow
+    Deny from All
+</Directory>
+
+<Files .access>
+    Order Deny,Allow
+    Deny from All
+</Files>
