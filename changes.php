@@ -1,6 +1,6 @@
 <?php
 
-include 'app\connection.php';
+include 'app/connection.php';
 
 if (isset($_GET['lastID']) && $_GET['lastID'] > -1) {
     $lastID = (int)$_GET['lastID'];

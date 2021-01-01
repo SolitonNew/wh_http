@@ -1,5 +1,5 @@
 <?php
-    include 'app\connection.php';
+    include 'app/connection.php';
 
     if (isset($_GET['id'])) {
         
