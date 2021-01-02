@@ -171,8 +171,12 @@ foreach ($rows as $row) {
                     ticks: {
                         min: chartMinTime,
                         max: chartMaxTime,
-                        stepSize: 1.0,
                     },
+                }],
+                yAxes: [{
+                    ticks: {
+                        stepSize: 1.0,
+                    }
                 }]
             },
             tooltips: {
