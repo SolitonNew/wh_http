@@ -16,11 +16,11 @@ $control = [];
 $varValue = '';
 if (count($d) > 0) {
     $groupID = $d[0]['GROUP_ID'];
-    $groupTitle = $d[0]['GROUP_TITLE'];
+    $groupTitle = mb_strtoupper($d[0]['GROUP_TITLE']);
     $variableTitle = $d[0]['VARIABLE_TITLE'];
     $appControl = $d[0]['APP_CONTROL'];
     $control = decodeAppControl($appControl);
-    $variableTitle = groupVariableName($groupTitle, $variableTitle, $control['label']);
+    $variableTitle = groupVariableName($groupTitle, mb_strtoupper($variableTitle), $control['label']);
     $varValue = $d[0]['VALUE'];
 }
 
@@ -28,7 +28,7 @@ if (count($d) > 0) {
 
 <nav aria-label="breadcrumb">
     <ol class="row breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/">КОМНАТЫ</a></li>
         <li class="breadcrumb-item"><a href="?page=room&roomID=<?php print($groupID); ?>"><?php print($groupTitle); ?></a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php print($variableTitle); ?></li>
     </ol>

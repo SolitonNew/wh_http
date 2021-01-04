@@ -8,14 +8,14 @@ $rows = $q->fetchAll();
 
 $groupTitle = '';
 if (count($rows) > 0) {
-    $groupTitle = $rows[0]['NAME'];
+    $groupTitle = mb_strtoupper($rows[0]['NAME']);
 }
 
 ?>
 
 <nav aria-label="breadcrumb">
     <ol class="row breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/">КОМНАТЫ</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php print($groupTitle); ?></li>
     </ol>
 </nav>
@@ -34,7 +34,7 @@ $q = $pdo->query($sql);
 $rows = [];
 foreach ($q as $row) {
     $c = decodeAppControl($row['APP_CONTROL']);
-    $itemLabel = groupVariableName($groupTitle, $row['COMM'], $c['label']);
+    $itemLabel = groupVariableName($groupTitle, mb_strtoupper($row['COMM']), mb_strtoupper($c['label']));
     $c['title'] = $itemLabel;
     
     $rows[] = [

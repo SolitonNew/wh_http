@@ -42,10 +42,12 @@
     printItem(null, $groups, 0, $groupList);   
     
     $listStart = false;
+    $currGroupTitle = '';
     
     for ($i = 0; $i < count($groupList); $i++) {
-        $row = $groupList[$i]['row'];
+        $row = $groupList[$i]['row'];        
         if ($groupList[$i]['level'] == 1) {
+            $currGroupTitle = mb_strtoupper($row['NAME']);
 ?>
 <?php if ($listStart) { ?>
     </div>
@@ -54,11 +56,14 @@
 <div class="col">
 <div class="list-group list-group-flush main-column" style="margin-bottom: 1rem;">
     <div class="alert alert-light" role="alert" style="margin-bottom: 0px;">
-        <?php print($row['NAME']); $listStart = true; ?>
+        <?php print($currGroupTitle); ?>
     </div>
 <?php
+            $listStart = true;
         } else {
             $roomNameUpper = mb_strtoupper($row['NAME']);
+            
+            $roomNameUpper = str_replace($currGroupTitle, '', $roomNameUpper);
                 
             $vars = findVariable($row['ID'], $roomNameUpper, $variables);
             
@@ -95,7 +100,7 @@
             
 ?>
 <div class="list-group-item main-item">
-    <a href="?page=room&roomID=<?php print($row['ID']); ?>"><?php print($row['NAME']); ?></a>
+    <a href="?page=room&roomID=<?php print($row['ID']); ?>"><?php print($roomNameUpper); ?></a>
     <?php
     if ($temperature_id > -1) {
     ?>

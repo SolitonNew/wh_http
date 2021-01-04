@@ -77,6 +77,6 @@ function groupVariableName($groupName, $variableName, $appControlLabel) {
     $resLabel = '';
     if ($appControlLabel != '') {
         $resLabel = $appControlLabel.' ';
-    }
+    }    
     return $resLabel . mb_strtoupper(str_replace($groupName, '', $variableName));
 }
