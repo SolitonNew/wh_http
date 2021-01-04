@@ -44,6 +44,14 @@
     $listStart = false;
     $currGroupTitle = '';
     
+    /**
+     * Названия вспомогательных выключателей освещения
+     */
+    $switches_2 = [
+        ' НОЧНИК', 
+        ' СТОЛОВАЯ'
+    ];
+    
     for ($i = 0; $i < count($groupList); $i++) {
         $row = $groupList[$i]['row'];        
         if ($groupList[$i]['level'] == 1) {
@@ -89,10 +97,14 @@
                             if (mb_strtoupper($v['COMM']) == $roomNameUpper) {
                                 $switch_1_id = $v['ID'];
                                 $switch_1_val = $v['VALUE'];
-                            } else
-                            if (mb_strtoupper($v['COMM']) == $roomNameUpper.' НОЧНИК') {
-                                $switch_2_id = $v['ID'];
-                                $switch_2_val = $v['VALUE'];
+                            } else {
+                                for ($n = 0; $n < count($switches_2); $n++) {
+                                    if (mb_strtoupper($v['COMM']) == $roomNameUpper.$switches_2[$n]) {
+                                        $switch_2_id = $v['ID'];
+                                        $switch_2_val = $v['VALUE'];
+                                        break;
+                                    }
+                                }
                             }
                             break;
                     }
