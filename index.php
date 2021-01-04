@@ -20,12 +20,24 @@
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
 <body>
-    <div id="dummyNav"></div>
-    <div id="mainContainer" class="container-fluid">
-    <?php 
-        include 'app/utils.php';
-        include 'app/router.php'; 
-    ?>
+    <div id="masterBody">
+        <div id="masterMenu" class="bg-light">
+            <a href="/" class="btn btn-light">
+                <img src="img/spreadsheet-3x.png">
+            </a>
+            <a href="?page=choisen" class="btn btn-light">
+                <img src="img/star-3x.png">
+            </a>
+        </div>
+        <div id="masterContent">
+            <div id="dummyNav"></div>
+            <div id="mainContainer" class="container-fluid">
+            <?php 
+                include 'app/utils.php';
+                include 'app/router.php'; 
+            ?>
+            </div>
+        </div>
     </div>
     
 <script>

@@ -18,5 +18,8 @@ switch ($page) {
     case 'variable':
         include 'variable.php';
         break;
+    case 'choisen':
+        include 'choisen.php';
+        break;
 }
 
