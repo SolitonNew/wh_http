@@ -14,7 +14,7 @@ if (count($rows) > 0) {
 ?>
 
 <nav aria-label="breadcrumb">
-    <ol class="row breadcrumb bg-light">
+    <ol class="row breadcrumb">
         <li class="breadcrumb-item"><a href="/">КОМНАТЫ</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php print($groupTitle); ?></li>
     </ol>
