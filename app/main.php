@@ -71,7 +71,7 @@
         } else {
             $roomNameUpper = mb_strtoupper($row['NAME']);
             
-            $roomNameUpper = str_replace($currGroupTitle, '', $roomNameUpper);
+            $roomNameUpperCrop = str_replace($currGroupTitle, '', $roomNameUpper);
                 
             $vars = findVariable($row['ID'], $roomNameUpper, $variables);
             
@@ -112,7 +112,7 @@
             
 ?>
 <div class="list-group-item main-item">
-    <a href="?page=room&roomID=<?php print($row['ID']); ?>"><?php print($roomNameUpper); ?></a>
+    <a href="?page=room&roomID=<?php print($row['ID']); ?>"><?php print($roomNameUpperCrop); ?></a>
     <?php
     if ($temperature_id > -1) {
     ?>
