@@ -1,3 +1,10 @@
+<nav aria-label="breadcrumb">
+    <ol class="row breadcrumb" style="display: flex; padding-right: 3rem;">
+        <li style="flex-grow: 1;">КОМНАТЫ</li>
+        <li><a href="?page=checked">ИЗБРАННЫЕ</a></li>
+    </ol>
+</nav>
+
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
     
 <?php
