@@ -20,7 +20,7 @@ if (count($rows) > 0) {
     </ol>
 </nav>
 
-<div class="list-group row row-cols-1 row-cols-sm-2 row-cols-lg-3" style="flex-direction: row; padding: 0 1rem;">
+<div class="list-group row row-cols-1 row-cols-sm-2 row-cols-lg-3" style="flex-direction: row; padding: 0 1rem; margin-bottom: 1px;">
 
 <?php
 
