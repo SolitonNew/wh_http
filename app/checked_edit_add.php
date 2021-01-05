@@ -7,7 +7,7 @@ if (isset($_GET['sel'])) {
 ?>
 
 <div style="width: 40rem;">
-    <div style="margin-bottom: 0.5rem;">
+    <div class="alert alert-dark" style="margin-bottom: 1rem;">
         <select id="filter" class="form-control">
             <option value="-1">-- ВСЕ --</option>
             <?php foreach ($CONTOL_LABELS as $key => $val) { ?>
