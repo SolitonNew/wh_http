@@ -99,4 +99,8 @@ foreach ($ls as $row) {
             window.location = url;
         });
     });
+    
+    function variableOnChanged(varID, varValue, varTime) {
+        
+    }
 </script>
