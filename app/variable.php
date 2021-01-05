@@ -28,7 +28,7 @@ if (count($d) > 0) {
 
 <nav aria-label="breadcrumb">
     <ol class="row breadcrumb">
-        <li class="breadcrumb-item"><a href="/">КОМНАТЫ</a></li>
+        <li class="breadcrumb-item"><a href="/"><?php print($MAIN_MENUS['main']); ?></a></li>
         <li class="breadcrumb-item"><a href="?page=room&roomID=<?php print($groupID); ?>"><?php print($groupTitle); ?></a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php print($variableTitle); ?></li>
     </ol>

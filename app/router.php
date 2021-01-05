@@ -21,5 +21,8 @@ switch ($page) {
     case 'checked':
         include 'checked.php';
         break;
+    case 'checked_edit':
+        include 'checked_edit.php';
+        break;
 }
 

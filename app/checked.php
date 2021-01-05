@@ -1,15 +1,10 @@
 <nav aria-label="breadcrumb">
     <ol class="row breadcrumb" style="display: flex; padding-right: 3rem;">
-        <li style="flex-grow: 1;"><a href="/">КОМНАТЫ</a></li>
-        <li>ИЗБРАННЫЕ</li>
+        <li class="breadcrumb-item"><a href="/"><?php print($MAIN_MENUS['main']); ?></a></li>
+        <li class="breadcrumb-item" style="flex-grow: 1;"><?php print($MAIN_MENUS['checked']); ?></li>
+        <li><a href="?page=checked_edit"><?php print($MAIN_MENUS['checked_edit']); ?></a></li>
     </ol>
 </nav>
 
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 

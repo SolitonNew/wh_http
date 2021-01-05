@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
     <ol class="row breadcrumb" style="display: flex; padding-right: 3rem;">
-        <li style="flex-grow: 1;">КОМНАТЫ</li>
-        <li><a href="?page=checked">ИЗБРАННЫЕ</a></li>
+        <li style="flex-grow: 1;"><?php print($MAIN_MENUS['main']); ?></li>
+        <li><a href="?page=checked"><?php print($MAIN_MENUS['checked']); ?></a></li>
     </ol>
 </nav>
 

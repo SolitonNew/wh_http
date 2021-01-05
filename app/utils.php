@@ -1,5 +1,11 @@
 <?php
 
+$MAIN_MENUS = [
+    'main' => 'КОМНАТЫ',
+    'checked' => 'ИЗБРАННЫЕ',
+    'checked_edit' => 'ПРАВКА',
+];
+
 function checkHttpPath($file) {
     print_r($_SERVER);
 }
