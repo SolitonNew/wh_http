@@ -152,5 +152,22 @@ body {
 }
 
 .checked-edit-item-edit {
-    
+    margin-top: -0.25rem;
+    margin-bottom: -0.25rem;
+}
+
+.checked-edit-item-edit-del {
+    display: none;
+}
+
+.del > .checked-edit-item-edit-del {
+    display: block;
+}
+
+.checked-edit-item-edit-add {
+    display: block;
+}
+
+.del > .checked-edit-item-edit-add {
+    display: none;
 }

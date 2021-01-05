@@ -42,4 +42,31 @@ switch ($page) {
             }
         }
         break;
+    case 'checked_add':
+        $id = $_GET['id'];
+        $q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_CHECKED'")->fetchAll();
+        if (count($q)) {
+            $a = explode(',', $q[0]['VALUE']);
+            if (!in_array($id, $a)) {
+                $a[] = $id;
+                $s = join(',', $a);
+                $pdo->query("update core_propertys set VALUE = '$s' where NAME = 'WEB_CHECKED'");
+                print('OK');
+            }
+        }
+        break;
+    case 'checked_del':
+        $id = $_GET['id'];
+        $q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_CHECKED'")->fetchAll();
+        if (count($q)) {
+            $a = explode(',', $q[0]['VALUE']);
+            $i = array_search($id, $a);
+            if ($i > -1) {
+                array_splice($a, $i, 1);
+                $s = join(',', $a);
+                $pdo->query("update core_propertys set VALUE = '$s' where NAME = 'WEB_CHECKED'");
+                print('OK');
+            }
+        }
+        break;
 }

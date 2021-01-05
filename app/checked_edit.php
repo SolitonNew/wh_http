@@ -13,7 +13,7 @@
     }
 ?>
 
-<div class="nav nav-tabs justify-content-center" style="margin-bottom: 1rem;">
+<div class="nav nav-tabs justify-content-center" style="margin: 0 -1rem; margin-bottom: 1rem;">
     <div class="nav-item">
         <a href="?page=checked_edit&regime=add" class="nav-link <?php if ($regime == 'add') print('active'); ?>">ДОБАВИТЬ</a>
     </div>
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="justify-content-center" style="display: flex;">
+<div class="justify-content-center" style="display: flex; margin: 0 -1rem;">
 <?php
     switch ($regime) {
         case 'add':

@@ -15,13 +15,13 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.18">
+        <link rel="stylesheet" href="css/style.css?v=0.0.19">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
 <body>
     <div id="dummyNav"></div>
-    <div id="mainContainer" class="container-fluid">
+    <div id="mainContainer" class="container-fluid" style="overflow: hidden;">
     <?php 
         include 'app/utils.php';
         include 'app/router.php'; 

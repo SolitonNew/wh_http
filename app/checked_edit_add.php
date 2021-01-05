@@ -1,40 +1,102 @@
-<div class="list-group" style="width: 40rem;">
 <?php
+$sel = '';
+if (isset($_GET['sel'])) {
+    $sel = $_GET['sel'];
+}
+
+?>
+
+<div style="width: 40rem;">
+    <div style="margin-bottom: 0.5rem;">
+        <select id="filter" class="form-control">
+            <option value="-1">-- ВСЕ --</option>
+            <?php foreach ($CONTOL_LABELS as $key => $val) { ?>
+            <?php if ($val) { ?>
+            <option value="<?php print($key); ?>"  <?php if ($sel == $key) print('selected'); ?>><?php print($val); ?></option>>
+            <?php } ?>
+            <?php } ?>
+        </select>
+    </div>
+
+    <div class="list-group">
+<?php
+
+$q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_CHECKED'")->fetchAll();
+$checks = explode(',', $q[0]['VALUE']);
+
+$where = '';
+if ($sel > 0) {
+    $where = " and v.APP_CONTROL = $sel ";
+}
 
 $sql = "select v.* ".
        "  from core_variables v ".
-       " where APP_CONTROL > 0 ".
+       " where v.APP_CONTROL > 0 ".
+       $where.
        " order by v.COMM";
 
 $ls = $pdo->query($sql)->fetchAll();
 
 foreach ($ls as $row) {
     $c = decodeAppControl($row['APP_CONTROL']);
-    
 ?>   
     <div class="list-group-item checked-edit-item">
         <div class="checked-edit-item-label">
             <?php print($c['label']); ?>
             <?php print($row['COMM']); ?>
         </div>
-        <div class="checked-edit-item-edit">
-            <a class="checked-edit-item-edit-a" id="add_<?php print($row['ID']); ?>" href="#">ДОБАВИТЬ</a>
+        <div class="checked-edit-item-edit <?php if (in_array($row['ID'], $checks)) print('del'); ?>">
+            <a class="btn btn-sm btn-secondary checked-edit-item-edit-del" id="del_<?php print($row['ID']); ?>" href="#">УДАЛИТЬ</a>
+            <a class="btn btn-sm btn-primary checked-edit-item-edit-add" id="add_<?php print($row['ID']); ?>" href="#">ДОБАВИТЬ</a>
         </div>
     </div>
 <?php  
 }
 ?>
+    </div>
 </div>
-
 
 <script>
     $('document').ready(() => {
-        $('.checked-edit-item-edit-a').on('click', (e) => {
+        $('.checked-edit-item-edit-del').on('click', (e) => {
             e.preventDefault();
-            
             let id = $(e.target).attr('id').substr(4);
             
-            $(e.target).hide();
+            $.ajax({
+                url: 'api.php?page=checked_del&id=' + id,
+            }).done((res) => {
+                if (res == 'OK') {
+                    $(e.target).parent().removeClass('del');
+                } else {
+                    alert(res);
+                }
+            });
+        });
+        
+        $('.checked-edit-item-edit-add').on('click', (e) => {
+            e.preventDefault();
+            let id = $(e.target).attr('id').substr(4);
+            
+            $.ajax({
+                url: 'api.php?page=checked_add&id=' + id,
+            }).done((res) => {
+                if (res == 'OK') {
+                    $(e.target).parent().addClass('del');
+                } else {
+                    alert(res);
+                }
+            });
+        });
+        
+        $('#filter').change((e) => {
+            let id = $(e.target).val()
+            let url = '?page=checked_edit';
+            if (id == -1) {
+                //
+            } else {
+                url += '&sel=' + id;
+            }
+            window.location = url;
         });
     });
 </script>
