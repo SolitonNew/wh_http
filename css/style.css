@@ -141,3 +141,16 @@ body {
 .variable-3-value-dimension {
     font-size: 2rem;
 }
+
+.checked-edit-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.checked-edit-item-label {
+    flex-grow: 1;
+}
+
+.checked-edit-item-edit {
+    
+}

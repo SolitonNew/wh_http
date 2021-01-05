@@ -40,8 +40,8 @@
             }
             $.ajax({
                 method: "POST",
-                url: "data.php",
-                data: {id: varID, value: varVal},
+                url: "api.php",
+                data: {page: 'data', id: varID, value: varVal},
             }).done((data)=>{
                 if (data) {
                     alert(data);
@@ -72,7 +72,7 @@
     let lastVariableID = <?php print($lastVariableID); ?>;
     
     function loadChanges() {
-        $.ajax({url: 'changes.php?lastID=' + lastVariableID, 
+        $.ajax({url: 'api.php?page=changes&lastID=' + lastVariableID, 
         success: (data) => {           
             setTimeout(loadChanges, 500);
             

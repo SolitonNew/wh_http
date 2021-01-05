@@ -2,7 +2,7 @@
 
 $MAIN_MENUS = [
     'main' => 'КОМНАТЫ',
-    'checked' => 'ИЗБРАННЫЕ',
+    'checked' => 'ИЗБРАННОЕ',
     'checked_edit' => 'ПРАВКА',
 ];
 
