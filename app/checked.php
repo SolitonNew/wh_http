@@ -64,7 +64,7 @@ foreach ($rows as $row) {
     for ($i = 0; $i < count($web_color); $i++) {
         if (mb_strpos(mb_strtoupper($itemLabel), mb_strtoupper($web_color[$i]['keyword'])) !== false) {
             $color = $web_color[$i]['color'];
-            if (strpos($color, '#') !== false) {
+            if ($color) {
                 $color = "'$color'";
             }
             break;
