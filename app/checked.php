@@ -16,26 +16,28 @@ $checks = $q[0]['VALUE'];
 $sql = "select v.* from core_variables v " .
        " where v.ID in (0 $checks ) ";
 
-$q = $pdo->query($sql);
+$q = $pdo->query($sql)->fetchAll();
 
 $rows = [];
-foreach ($q as $row) {
-    $c = decodeAppControl($row['APP_CONTROL']);
-    $itemLabel = mb_strtoupper($row['COMM']); // groupVariableName($groupTitle, mb_strtoupper($row['COMM']), mb_strtoupper($c['label']));
-    $c['title'] = $itemLabel;
-    
-    $rows[] = [
-        'DATA' => $row, 
-        'CONTROL' => $c
-    ];
+
+foreach (explode(',', $checks) as $key) {
+    for ($i = 0; $i < count($q); $i++) {
+        $row = $q[$i];
+        if ($q[$i]['ID'] == $key) {
+            $c = decodeAppControl($row['APP_CONTROL']);
+            $itemLabel = mb_strtoupper($row['COMM']); // groupVariableName($groupTitle, mb_strtoupper($row['COMM']), mb_strtoupper($c['label']));
+            $c['title'] = $itemLabel;
+
+            $rows[] = [
+                'DATA' => $row, 
+                'CONTROL' => $c
+            ];
+            break;
+        }
+    }
 }
 
-/* usort($rows, function ($item1, $item2) {
-    return $item1['CONTROL']['title'] > $item2['CONTROL']['title'];
-}); */
-
 $charts = [];
-
 $varSteps = [];
 
 foreach ($rows as $row) {
