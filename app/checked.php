@@ -168,7 +168,7 @@ foreach ($rows as $row) {
         data: {
             datasets: [{
                 data: [<?php print($data_text); ?>],
-                backgroundColor: '<?php print($colors[$i]); ?>',
+                backgroundColor: <?php print($colors[$i]); ?>,
             }]
         },
         options: {
