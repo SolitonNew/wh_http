@@ -20,6 +20,9 @@
     <div class="nav-item">
         <a href="?page=checked_edit&regime=order" class="nav-link <?php if ($regime == 'order') print('active'); ?>">ПОРЯДОК</a>
     </div>
+    <div class="nav-item">
+        <a href="?page=checked_edit&regime=color" class="nav-link <?php if ($regime == 'color') print('active'); ?>">ЦВЕТ</a>
+    </div>
 </div>
 
 <div class="justify-content-center" style="display: flex; margin: 0 -1rem;">
@@ -30,6 +33,9 @@
             break;
         case 'order':
             include 'checked_edit_order.php';
+            break;
+        case 'color':
+            include 'checked_edit_color.php';
             break;
     }
 ?>

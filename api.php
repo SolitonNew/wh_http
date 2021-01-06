@@ -113,4 +113,62 @@ switch ($page) {
             }
         }
         break;
+    case 'checked_color':
+        $action = $_POST['action'];
+        
+        $keyword = $_POST['keyword'];
+        
+        $color = '';
+        if (isset($_POST['color'])) {
+            $color = $_POST['color'];
+        }
+        $q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_COLOR'")->fetchAll();        
+        
+        if (count($q)) {
+            if ($q[0]['VALUE']) {
+                $a = json_decode($q[0]['VALUE'], true);
+                if (count($a) == 0) {
+                    $a = [];
+                }
+            } else {
+                $a = [];
+            }
+            
+            switch ($action) {
+                case 'add':
+                    $a[] = [
+                        'keyword' => $keyword,
+                        'color' => $color
+                    ];
+                    break;
+                case 'set':
+                    $finded = false;
+                    for ($i = 0; $i < count($a); $i++) {
+                        if (mb_strtoupper($a[$i]['keyword']) == mb_strtoupper($keyword)) {
+                            $finded = true;
+                            $a[$i]['color'] = $color;
+                            break;
+                        }
+                    }
+                    if (!$finded) {
+                        $a[] = [
+                            'keyword' => $keyword,
+                            'color' => $color
+                        ];
+                    }
+                    break;
+                case 'del':
+                    for ($i = 0; $i < count($a); $i++) {
+                        if (mb_strtoupper($a[$i]['keyword']) == mb_strtoupper($keyword)) {
+                            array_splice($a, $i, 1);
+                            break;
+                        }
+                    }
+                    break;
+            }
+            
+            $pdo->prepare("update core_propertys set VALUE = ? where NAME = 'WEB_COLOR'")->execute([json_encode($a)]);
+            return 'OK';
+        }
+        break;
 }

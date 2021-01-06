@@ -171,3 +171,7 @@ body {
 .del > .checked-edit-item-edit-add {
     display: none;
 }
+
+:fullscreen {
+    
+}
