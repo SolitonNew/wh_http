@@ -60,10 +60,13 @@ foreach ($rows as $row) {
     $resolution = $row['CONTROL']['resolution'];
     $varStep = $row['CONTROL']['varStep'];
     
-    $color = '""';
+    $color = '';
     for ($i = 0; $i < count($web_color); $i++) {
         if (mb_strpos(mb_strtoupper($itemLabel), mb_strtoupper($web_color[$i]['keyword'])) !== false) {
             $color = $web_color[$i]['color'];
+            if (strpos($color, '#') !== false) {
+                $color = "'$color'";
+            }
             break;
         }
     }
@@ -168,7 +171,7 @@ foreach ($rows as $row) {
         data: {
             datasets: [{
                 data: [<?php print($data_text); ?>],
-                backgroundColor: <?php print($colors[$i]); ?>,
+                <?php if ($colors[$i]) print('backgroundColor: '.$colors[$i]).','; ?>
             }]
         },
         options: {
