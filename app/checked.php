@@ -13,8 +13,13 @@
 $q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_CHECKED'")->fetchAll();
 $checks = $q[0]['VALUE'];
 
-$sql = "select v.* from core_variables v " .
-       " where v.ID in (0 $checks ) ";
+if ($checks) {
+    $sql = "select v.* from core_variables v " .
+           " where v.ID in ($checks) ";
+} else {
+    $sql = "select v.* from core_variables v " .
+           " where v.ID in (0) ";
+}
 
 $q = $pdo->query($sql)->fetchAll();
 
