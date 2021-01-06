@@ -4,6 +4,8 @@ if (isset($_GET['sel'])) {
     $sel = $_GET['sel'];
 }
 
+$app_controls = [];
+
 ?>
 
 <div style="width: 40rem;">
@@ -11,7 +13,9 @@ if (isset($_GET['sel'])) {
         <select id="filter" class="form-control">
             <option value="-1">-- ВСЕ --</option>
             <?php foreach ($CONTOL_LABELS as $key => $val) { ?>
-            <?php if ($val) { ?>
+            <?php if ($val) { 
+                    $app_controls[] = $key;
+            ?>
             <option value="<?php print($key); ?>"  <?php if ($sel == $key) print('selected'); ?>><?php print($val); ?></option>>
             <?php } ?>
             <?php } ?>
@@ -20,6 +24,8 @@ if (isset($_GET['sel'])) {
 
     <div class="list-group">
 <?php
+
+$app_controls = join(',', $app_controls);
 
 $q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_CHECKED'")->fetchAll();
 $checks = explode(',', $q[0]['VALUE']);
@@ -31,7 +37,7 @@ if ($sel > 0) {
 
 $sql = "select v.* ".
        "  from core_variables v ".
-       " where v.APP_CONTROL > 0 ".
+       " where v.APP_CONTROL in ($app_controls) ".
        $where.
        " order by v.COMM";
 

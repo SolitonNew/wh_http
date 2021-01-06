@@ -46,7 +46,7 @@ $charts = [];
 $varSteps = [];
 
 foreach ($rows as $row) {
-    $itemLabel = $row['CONTROL']['title'];
+    $itemLabel = $row['CONTROL']['label'].' '.$row['CONTROL']['title'];
     $typ = $row['CONTROL']['typ'];
     $resolution = $row['CONTROL']['resolution'];
     $varStep = $row['CONTROL']['varStep'];
