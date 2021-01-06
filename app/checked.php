@@ -13,6 +13,14 @@
 $q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_CHECKED'")->fetchAll();
 $checks = $q[0]['VALUE'];
 
+$q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_COLOR'")->fetchAll();
+$web_color = $q[0]['VALUE'];
+if ($web_color) {
+    $web_color = json_decode($web_color, true);
+} else {
+    $web_color = [];
+}
+
 if ($checks) {
     $sql = "select v.* from core_variables v " .
            " where v.ID in ($checks) ";
@@ -43,6 +51,7 @@ foreach (explode(',', $checks) as $key) {
 }
 
 $charts = [];
+$colors = [];
 $varSteps = [];
 
 foreach ($rows as $row) {
@@ -50,6 +59,16 @@ foreach ($rows as $row) {
     $typ = $row['CONTROL']['typ'];
     $resolution = $row['CONTROL']['resolution'];
     $varStep = $row['CONTROL']['varStep'];
+    
+    $color = '';
+    for ($i = 0; $i < count($web_color); $i++) {
+        if (mb_strpos(mb_strtoupper($web_color[$i]['keyword']), $itemLabel) !== false) {
+            $color = $web_color[$i]['color'];
+            break;
+        }
+    }
+    
+    $colors[] = $color;
     
     $varID = $row['DATA']['ID'];
     $value = $row['DATA']['VALUE'] * $varStep;
@@ -139,7 +158,6 @@ foreach ($rows as $row) {
         }
 
         $data_text = join($data, ', ');
-
 ?>
     
     var ctx = document.getElementById("chart_<?php print($chart); ?>");
@@ -147,7 +165,8 @@ foreach ($rows as $row) {
         type: 'line',
         data: {
             datasets: [{
-                data: [<?php print($data_text); ?>]
+                data: [<?php print($data_text); ?>],
+                backgroundColor: '#ff0000',
             }]
         },
         options: {
