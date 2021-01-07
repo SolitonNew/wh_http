@@ -52,8 +52,12 @@ foreach ($ls as $row) {
             <?php print($row['COMM']); ?>
         </div>
         <div class="checked-edit-item-edit <?php if (in_array($row['ID'], $checks)) print('del'); ?>">
-            <a class="btn btn-sm btn-secondary checked-edit-item-edit-del" id="del_<?php print($row['ID']); ?>" href="#">УДАЛИТЬ</a>
-            <a class="btn btn-sm btn-primary checked-edit-item-edit-add" id="add_<?php print($row['ID']); ?>" href="#">ДОБАВИТЬ</a>
+            <a class="btn btn-sm btn-outline-primary checked-edit-item-edit-del" id="del_<?php print($row['ID']); ?>" href="#">
+                <img src="img/check-2x.png">
+            </a>
+            <a class="btn btn-sm btn-outline-primary checked-edit-item-edit-add" id="add_<?php print($row['ID']); ?>" href="#">
+                <img src="img/check-2x.png" style="opacity: 0;">
+            </a>
         </div>
     </div>
 <?php  
@@ -66,13 +70,13 @@ foreach ($ls as $row) {
     $('document').ready(() => {
         $('.checked-edit-item-edit-del').on('click', (e) => {
             e.preventDefault();
-            let id = $(e.target).attr('id').substr(4);
+            let id = $(e.currentTarget).attr('id').substr(4);
             
             $.ajax({
                 url: 'api.php?page=checked_del&id=' + id,
             }).done((res) => {
                 if (res == 'OK') {
-                    $(e.target).parent().removeClass('del');
+                    $(e.currentTarget).parent().removeClass('del');
                 } else {
                     alert(res);
                 }
@@ -81,13 +85,13 @@ foreach ($ls as $row) {
         
         $('.checked-edit-item-edit-add').on('click', (e) => {
             e.preventDefault();
-            let id = $(e.target).attr('id').substr(4);
+            let id = $(e.currentTarget).attr('id').substr(4);
             
             $.ajax({
                 url: 'api.php?page=checked_add&id=' + id,
             }).done((res) => {
                 if (res == 'OK') {
-                    $(e.target).parent().addClass('del');
+                    $(e.currentTarget).parent().addClass('del');
                 } else {
                     alert(res);
                 }

@@ -47,10 +47,10 @@ for ($i = 0; $i < count($rows); $i++) {
             <?php print($row['DATA']['COMM']); ?>
         </div>
         <div class="checked-edit-item-edit">
-            <a class="btn btn-sm btn-primary checked-edit-item-order-up"
-                id="up_<?php print($row['DATA']['ID']); ?>" href="#">ВВЕРХ</a>
-            <a class="btn btn-sm btn-primary checked-edit-item-order-down"
-                id="down_<?php print($row['DATA']['ID']); ?>" href="#">ВНИЗ</a>
+            <a class="btn btn-sm btn-outline-primary checked-edit-item-order-up"
+                id="up_<?php print($row['DATA']['ID']); ?>" href="#"><img src="img/arrow-thick-top-2x.png"></a>
+            <a class="btn btn-sm btn-outline-primary checked-edit-item-order-down"
+                id="down_<?php print($row['DATA']['ID']); ?>" href="#"><img src="img/arrow-thick-bottom-2x.png"></a>
         </div>
     </div>
 <?php  
@@ -63,38 +63,40 @@ for ($i = 0; $i < count($rows); $i++) {
     $('document').ready(() => {
         $('.checked-edit-item-order-up').on('click', (e) => {
             e.preventDefault();
-            let id = $(e.target).attr('id').substr(3);
+            let id = $(e.currentTarget).attr('id').substr(3);
             
             $.ajax({
                 url: 'api.php?page=checked_up&id=' + id,
             }).done((res) => {
                 if (res == 'OK') {
-                    let item = $(e.target).parent().parent();
+                    let item = $(e.currentTarget).parent().parent();
                     item.insertBefore(item.prev());
-                    
                     recalcDisabledButtons();
                 } else {
                     alert(res);
                 }
             });
+            
+            return false;
         });
         
         $('.checked-edit-item-order-down').on('click', (e) => {
             e.preventDefault();
-            let id = $(e.target).attr('id').substr(5);
+            let id = $(e.currentTarget).attr('id').substr(5);
             
             $.ajax({
                 url: 'api.php?page=checked_down&id=' + id,
             }).done((res) => {
                 if (res == 'OK') {
-                    let item = $(e.target).parent().parent();
+                    let item = $(e.currentTarget).parent().parent();
                     item.insertAfter(item.next());
-                    
                     recalcDisabledButtons();
                 } else {
                     alert(res);
                 }                
-            });            
+            });          
+            
+            return false;
         });
         
         recalcDisabledButtons();

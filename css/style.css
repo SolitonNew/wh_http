@@ -6,6 +6,11 @@ body {
     height: 100%;
 }
 
+.btn-outline-primary:active,
+.btn-outline-primary:hover {
+    background-color: #ffffff!important;
+}
+
 #dummyNav {
     display: none;
 }
@@ -170,6 +175,11 @@ body {
 
 .del > .checked-edit-item-edit-add {
     display: none;
+}
+
+.checked-edit-item-order-up.disabled,
+.checked-edit-item-order-down.disabled {
+    opacity: 0;
 }
 
 :fullscreen {
