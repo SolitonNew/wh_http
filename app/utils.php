@@ -3,7 +3,7 @@
 $MAIN_MENUS = [
     'main' => 'КОМНАТЫ',
     'checked' => 'ИЗБРАННОЕ',
-    'checked_edit' => 'ПРАВКА',
+    'checked_edit' => 'НАСТРОЙКИ',
 ];
 
 $CONTOL_LABELS = [
