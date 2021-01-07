@@ -1,4 +1,4 @@
-AuthType Digest
+AuthType Basic
 AuthName "Доступ ограничен"
 AuthUserFile /home/admin/wh/app/.htpasswd
 Require valid-user
