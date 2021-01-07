@@ -182,6 +182,43 @@ body {
     opacity: 0;
 }
 
+.checked-edit-color-panel {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.checked-edit-color-panel > div {
+    display: flex;
+}
+
+.checked-edit-color-panel > div > a {
+    flex-grow: 1;
+}
+
+.checked-edit-color-list .list-group-item {
+    display: flex;
+}
+
+.checked-edit-color-list .list-group-item > div {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+@media(max-width: 575px) {
+    .checked-edit-color-panel {
+        flex-direction: column;
+    }
+    
+    .checked-edit-color-panel > input {
+        margin-bottom: 0.5rem;
+    }
+    
+    .checked-edit-color-list .list-group-item > div {
+        flex-direction: column;
+    }
+}
+
 :fullscreen {
     
 }
