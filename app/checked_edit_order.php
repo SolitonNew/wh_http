@@ -46,7 +46,7 @@ for ($i = 0; $i < count($rows); $i++) {
             <?php print($c['label']); ?>
             <?php print($row['DATA']['COMM']); ?>
         </div>
-        <div class="checked-edit-item-edit">
+        <div class="checked-edit-item-edit" style="white-space: nowrap;">
             <a class="btn btn-sm btn-outline-primary checked-edit-item-order-up"
                 id="up_<?php print($row['DATA']['ID']); ?>" href="#"><img src="img/arrow-thick-top-2x.png"></a>
             <a class="btn btn-sm btn-outline-primary checked-edit-item-order-down"
