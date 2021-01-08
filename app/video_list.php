@@ -10,3 +10,14 @@
     }
 ?>
 </div>
+
+<script>
+    $('document').ready(() => {
+        $('.video-list-item').on('click', (e) => {
+            e.preventDefault();
+        });
+        $('.video-list-item').on('mouseup', (e) => {
+            alert('AAAAAAAAA');
+        });
+    });
+</script>
