@@ -1,4 +1,4 @@
-<div class="alert alert-dark video-list">
+<div class="video-list">
 <?php 
     $q = $pdo->query("select * from plan_video order by ORDER_NUM")->fetchAll();
     foreach ($q as $row) {
