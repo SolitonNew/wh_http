@@ -5,7 +5,8 @@
     </ol>
 </nav>
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+<div style="display: flex; flex-direction: column; min-height: calc(100vh - 6rem);">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3" style="flex-grow: 1;">
     
 <?php
     $sql = 'select * from plan_parts order by NAME, ORDER_NUM';
@@ -156,6 +157,7 @@
 <?php if ($listStart) { ?>
     </div>
 </div>
+
 <?php } ?>
 
 <script>
@@ -172,4 +174,7 @@
     }
 </script>
 
+</div>
+
+<?php include "video_list.php"; ?>
 </div>
