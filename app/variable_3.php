@@ -42,8 +42,8 @@ $varStep = $control['varStep'];
             
             $.ajax({
                 method: "POST",
-                url: "data.php",
-                data: {id: variableID, value: varVal},
+                url: "api.php",
+                data: {page: 'data', id: variableID, value: varVal},
             }).done((data)=>{
                 if (data) {
                     alert(data);
