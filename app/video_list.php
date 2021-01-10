@@ -37,7 +37,6 @@
         });
         
         $('.video-list').on('touchstart', () => {
-            console.log('TOUCHSTART');
             clearTimeout(videoTimeOutForScroll);
         });
         
@@ -89,7 +88,7 @@
             
             if (prevO > 0) {
                 let s = scrollX + prevX - cx;
-                $('.video-list').stop().animate({scrollLeft: s}, 100);
+                $('.video-list').stop().animate({scrollLeft: s}, 250);
             }
         }
     }
@@ -103,7 +102,7 @@
                 videoLastScroll = s;
                 videoViewCheckAutoscroll();
             }
-        }, 50);
+        }, 100);
     }
    
 </script>
