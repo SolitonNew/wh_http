@@ -1,4 +1,5 @@
-<div class="video-list">
+<div class="video-list-view">
+    <div class="video-list">
 <?php 
     $q = $pdo->query("select * from plan_video order by ORDER_NUM")->fetchAll();
     foreach ($q as $row) {
@@ -9,6 +10,7 @@
 <?php
     }
 ?>
+    </div>
 </div>
 
 <script>
