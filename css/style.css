@@ -221,7 +221,7 @@ body {
 
 .video-list-view {
     border-top: 1px solid rgba(0,0,0,.125);
-    margin: 0 -1rem;
+    margin: 0 -15px;
     margin-top: 2rem;
     background-color: #ffffff;
     text-align: center;
@@ -238,7 +238,7 @@ body {
 .video-list-item {
     text-align: center;
     display: inline-block;
-    margin: 1rem 0.5rem;
+    margin: 10px 10px;
     width: 320px;
     height: 200px;
 }
@@ -250,6 +250,10 @@ body {
 
 @media(min-width: 992px) {
     .video-list {
-        padding: 0 0.5rem;
+        padding: 0 5px;
+    }
+    
+    .video-list-item {
+        margin: 10px 5px;
     }
 }
