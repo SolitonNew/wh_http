@@ -171,7 +171,7 @@ foreach ($rows as $row) {
         data: {
             datasets: [{
                 data: [<?php print($data_text); ?>],
-                lineTension: 0,
+                lineTension: 0.2,
                 <?php if ($colors[$i]) print('backgroundColor: '.$colors[$i]).','; ?>
             }]
         },
