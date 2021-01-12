@@ -153,7 +153,8 @@ foreach ($rows as $row) {
         type: 'line',
         data: {
             datasets: [{
-                data: [<?php print($data_text); ?>]
+                data: [<?php print($data_text); ?>],
+                lineTension: 0,
             }]
         },
         options: {

@@ -42,6 +42,8 @@
         
         $('.video-list-item').on('click', (e) => {
             e.preventDefault();
+            
+            alert('На стадии разработки');
         });
     });
    
