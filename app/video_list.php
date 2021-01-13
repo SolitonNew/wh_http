@@ -5,7 +5,7 @@
     foreach ($q as $row) {
 ?>
     <a class="video-list-item" href="#">
-        <img src="img/cams/<?php print($row['ID']); ?>.png">
+        <video class="video-list-item-content" poster="img/cams/<?php print($row['ID']); ?>.png"></video>
     </a>
 <?php
     }
