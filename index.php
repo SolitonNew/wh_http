@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.31">
+        <link rel="stylesheet" href="css/style.css?v=0.0.32">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
@@ -103,6 +103,8 @@
                 }
             }
         }).scroll();
+        
+        $('.body-page-main').css('opacity', 1);
     });
     
     let lastVariableID = <?php print($lastVariableID); ?>;
@@ -135,9 +137,7 @@
             console.log('ERROR');
         }});
     }
-</script>
 
-<script>
     var bodyItemW = 0;
     var bodyItemW_2 = 0;
     var bodyTimeOutForScroll = false;
