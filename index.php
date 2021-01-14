@@ -213,7 +213,7 @@
                     switch (page) {
                         case 'left':
                             let a = window.location.href.split('?');
-                            if (a.length > 1) {
+                            if (a.length == 1) {
                                 window.close();
                             } else {
                                 history.back();
