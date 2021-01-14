@@ -60,9 +60,7 @@
         if (!isMobile) {
             $('.body-page-main').css('overflow', 'hidden');
         }
-        
-        $('nav').html(history.state);
-        
+                
         $('.custom-control-input').on('change', (e) => {
             let obj = $(e.target);
             varID = obj.attr('id').substr(9);
@@ -214,7 +212,8 @@
                 
                     switch (page) {
                         case 'left':
-                            if (history.length == 1) {
+                            let a = window.location.href.split('?');
+                            if (a.length > 1) {
                                 window.close();
                             } else {
                                 history.back();
