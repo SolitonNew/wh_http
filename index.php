@@ -189,7 +189,11 @@
                 
                     switch (page) {
                         case 'left':
-                            history.back();
+                            if (history.length == 1) {
+                                window.close();
+                            } else {
+                                history.back();
+                            }
                             break;
                         case 'center':
                             break;
