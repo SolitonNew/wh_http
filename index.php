@@ -61,6 +61,8 @@
             $('.body-page-main').css('overflow', 'hidden');
         }
         
+        $('nav').html(history.length);
+        
         $('.custom-control-input').on('change', (e) => {
             let obj = $(e.target);
             varID = obj.attr('id').substr(9);
