@@ -83,7 +83,7 @@
         
         $(window).on('resize', () => {
             if ($('.body-page-left').css('display') == 'flex') {
-                $('.body-page-main').scrollLeft($(window).width());
+                $('.body-page-main').scrollLeft($('.body-page-left').width());
             } else {
                 $('.body-page-main').scrollLeft(0);
             }
