@@ -212,7 +212,7 @@
                 
                     switch (page) {
                         case 'left':
-                            history.back();
+                            history.go(-1);
                             /*if (history.length == 1) {
                                 window.close();
                             } else {
