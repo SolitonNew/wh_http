@@ -209,12 +209,13 @@
                 
                     switch (page) {
                         case 'left':
-                            let a = window.location.href.split('?');
+                            $('nav').html(window.location.href);
+                            /*let a = window.location.href.split('?');
                             if (a.length <= 1) {
                                 //window.close();
                             } else {
                                 history.back();
-                            }
+                            }*/
                             break;
                         case 'center':
                             break;
