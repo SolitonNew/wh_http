@@ -104,7 +104,7 @@
             }
         }).scroll();
         
-        $('.body-page-main').css('opacity', 1);
+        $('.body-page-main > div').css('opacity', 1);
     });
     
     let lastVariableID = <?php print($lastVariableID); ?>;
