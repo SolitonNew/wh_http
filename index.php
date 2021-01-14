@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.30">
+        <link rel="stylesheet" href="css/style.css?v=0.0.31">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
@@ -82,7 +82,11 @@
         loadChanges();
         
         $(window).on('resize', () => {
-            $('.body-page-main').scrollLeft($(window).width());
+            if ($('.body-page-left').css('display') == 'flex') {
+                $('.body-page-main').scrollLeft($(window).width());
+            } else {
+                $('.body-page-main').scrollLeft(0);
+            }
             
             if ($('nav').length) {
                 $('body').addClass('fixed-nav');
@@ -156,7 +160,10 @@
         $('.body-page-main').on('scroll', (e) => {
             //bodyViewRecalc();
             
-            let itemX = $('.body-page-main').scrollLeft() - bodyItemW;
+            let itemX = $('.body-page-main').scrollLeft();
+            if ($('.body-page-left').css('display') == 'flex') {
+                itemX -= bodyItemW;
+            }
             let o = 1 - Math.abs(itemX / bodyItemW);
             $('nav').css('opacity', o);
             
@@ -190,14 +197,16 @@
             //
         } else {
             for (let i = 0; i < ls.length; i++) {
-                let itemX = $(ls[i]).offset().left;
-                let o = 1 - Math.abs(itemX / bodyItemW);
-                if (o < 0) {
-                    o = 0;
-                }
-                if (o > prevO) {
-                    prevX = itemX;
-                    prevO = o;
+                if ($(ls[i]).css('display') == 'flex') {
+                    let itemX = $(ls[i]).offset().left;
+                    let o = 1 - Math.abs(itemX / bodyItemW);
+                    if (o < 0) {
+                        o = 0;
+                    }
+                    if (o > prevO) {
+                        prevX = itemX;
+                        prevO = o;
+                    }
                 }
             }
             
@@ -205,13 +214,19 @@
                 let s = scrollX + prevX;
                 $('.body-page-main').stop().animate({scrollLeft: s}, 250, () => {
                     let page = 'center';
-                    if (s < bodyItemW) {
-                        page = 'left';
-                    } else
-                    if (s > bodyItemW) {
-                        page = 'right';
+                    if ($('.body-page-left').css('display') == 'flex') {
+                        if (s < bodyItemW) {
+                            page = 'left';
+                        } else
+                        if (s > bodyItemW) {
+                            page = 'right';
+                        }
+                    } else {
+                        if (s > 0) {
+                            page = 'right';
+                        }
                     }
-                
+                    
                     switch (page) {
                         case 'left':
                             history.back();
