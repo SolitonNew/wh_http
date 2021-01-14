@@ -25,9 +25,9 @@ body {
 
 .body-page-left,
 .body-page-right {
-   display: flex;
-   justify-content: center;
-   padding-top: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .body-page-left {

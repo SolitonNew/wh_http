@@ -4,6 +4,7 @@ $MAIN_MENUS = [
     'main' => 'КОМНАТЫ',
     'checked' => 'ИЗБРАННОЕ',
     'checked_edit' => 'НАСТРОЙКИ',
+    'back' => 'НАЗАД'
 ];
 
 $CONTOL_LABELS = [

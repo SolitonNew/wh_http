@@ -1,5 +1,6 @@
 <?php
     include 'app/connection.php';
+    include 'app/utils.php';
     
     $sql = 'select max(ID) MAX_ID from core_variable_changes_mem';
     $d = $pdo->query($sql)->fetchAll();
@@ -15,29 +16,36 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.29">
+        <link rel="stylesheet" href="css/style.css?v=0.0.30">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
 <body>
     <div class="body-page-main">
         <div class="body-page-left">
-            <div class="spinner-border" role="status">
+            <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
+            </div>
+            <br>
+            <div class="alert alert-primary">
+                <?php print($MAIN_MENUS['back']); ?>
             </div>
         </div>
         <div class="body-page-center">
             <div id="dummyNav"></div>
             <div id="mainContainer" class="container-fluid" style="overflow: hidden;">
             <?php 
-                include 'app/utils.php';
                 include 'app/router.php'; 
             ?>
             </div>
         </div>
         <div class="body-page-right">
-            <div class="spinner-border" role="status">
+            <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
+            </div>
+            <br>
+            <div class="alert alert-primary">
+                <?php print($MAIN_MENUS['checked']); ?>
             </div>
         </div>
     </div>
@@ -130,20 +138,33 @@
     var bodyItemW_2 = 0;
     var bodyTimeOutForScroll = false;
     var bodyLastScroll = false;
+    var currentPage = '<?php print($page); ?>';
     
     $('document').ready(() => {
+        switch (currentPage) {
+            case 'checked':
+            case 'checked_edit':
+                $('.body-page-right').hide();
+                break;
+        }
+        
+        
         $('.body-page-main').on('scroll', (e) => {
             //bodyViewRecalc();
             
             let itemX = $('.body-page-main').scrollLeft() - bodyItemW;
             let o = 1 - Math.abs(itemX / bodyItemW);
             $('nav').css('opacity', o);
+            
+            recalcSpinerPos();
         });
        
         $(window).on('resize', (e) => {
             bodyItemW = $('.body-page-center').width();
             bodyItemW_2 = bodyItemW / 2;
             //bodyViewRecalc();
+            
+            recalcSpinerPos();
         }).trigger('resize');
         
         $('.body-page-main').on('touchend', () => {
@@ -216,6 +237,12 @@
                 bodyViewCheckAutoscroll();
             }
         }, 100);
+    }
+    
+    function recalcSpinerPos() {
+        let t = $(window).scrollTop() + $(window).height() / 2 - $('nav').height() / 2;
+        $('.body-page-left').css('padding-top', t);
+        $('.body-page-right').css('padding-top', t);
     }
    
 </script>

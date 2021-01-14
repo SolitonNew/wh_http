@@ -91,7 +91,7 @@
             }
             
             if (prevO > 0) {
-                let s = scrollX + prevX - cx;
+                let s = scrollX + prevX - cx + 0.5;
                 $('.video-list').stop().animate({scrollLeft: s}, 250);
             }
         }
