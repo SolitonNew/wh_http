@@ -148,6 +148,11 @@
                 break;
         }
         
+        let a = window.location.href.split('?');
+        if (a.length <= 1) {
+            $('.body-page-left').hide();
+        }
+        
         $('.body-page-main').on('scroll', (e) => {
             //bodyViewRecalc();
             
@@ -209,13 +214,7 @@
                 
                     switch (page) {
                         case 'left':
-                            let a = window.location.href.split('?');
-                            if (a.length <= 1) {
-                                $('nav').html('CLOSE');
-                                window.close();
-                            } else {
-                                history.back();
-                            }
+                            history.back();
                             break;
                         case 'center':
                             break;
