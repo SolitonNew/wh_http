@@ -230,11 +230,13 @@
                     switch (page) {
                         case 'left':
                             history.back();
+                            $('.body-page-main > div').css('opacity', 0);
                             break;
                         case 'center':
                             break;
                         case 'right':
                             window.location = '?page=checked';
+                            $('.body-page-main > div').css('opacity', 0);
                             break;
                     }
                 });
