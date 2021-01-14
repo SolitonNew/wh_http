@@ -212,12 +212,11 @@
                 
                     switch (page) {
                         case 'left':
-                            history.go(-1);
-                            /*if (history.length == 1) {
+                            if (history.length == 1) {
                                 window.close();
                             } else {
                                 history.back();
-                            }*/
+                            }
                             break;
                         case 'center':
                             break;
