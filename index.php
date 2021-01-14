@@ -211,7 +211,7 @@
                         case 'left':
                             let a = window.location.href.split('?');
                             if (a.length <= 1) {
-                                window.close();
+                                //window.close();
                             } else {
                                 history.back();
                             }
