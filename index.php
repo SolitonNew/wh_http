@@ -29,6 +29,7 @@
             <br>
             <div class="alert alert-primary">
                 <?php print($MAIN_MENUS['back']); ?>
+                <div id="zzz"></div>
             </div>
         </div>
         <div class="body-page-center">
@@ -148,6 +149,7 @@
                 break;
         }
         
+        $('#zzz').text(history.length);
         
         $('.body-page-main').on('scroll', (e) => {
             //bodyViewRecalc();
