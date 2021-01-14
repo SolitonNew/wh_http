@@ -61,7 +61,7 @@
             $('.body-page-main').css('overflow', 'hidden');
         }
         
-        $('nav').html(history.length);
+        $('nav').html(history.state);
         
         $('.custom-control-input').on('change', (e) => {
             let obj = $(e.target);
