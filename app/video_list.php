@@ -5,7 +5,7 @@
     foreach ($q as $row) {
 ?>
     <a class="video-list-item" href="#">
-        <video class="video-list-item-content" poster="img/cams/<?php print($row['ID']); ?>.png"></video>
+        <video class="video-list-item-content" autoplay="true" poster="img/cams/<?php print($row['ID']); ?>.png"></video>
     </a>
 <?php
     }
@@ -49,6 +49,7 @@
    
     function videoViewRecalc() {      
         let scrollX = $('.video-list').scrollLeft();
+        let p_off = $('.video-list').offset().left;
         let cx = (videoViewW - videoItemW) / 2;
         let ls = $('.video-list-item');
        
@@ -56,7 +57,7 @@
             $(ls).css('opacity', 1);
         } else {
             for (let i = 0; i < ls.length; i++) {
-                let itemX = $(ls[i]).offset().left - cx;
+                let itemX = $(ls[i]).offset().left - p_off - cx;
                 let o = 1 - Math.abs(itemX / videoItemW / 1.25);
                 if (o < 0) {
                     o = 0;
@@ -68,6 +69,7 @@
     
     function videoViewCentringItem() {
         let scrollX = $('.video-list').scrollLeft();
+        let p_off = $('.video-list').offset().left;
         let cx = (videoViewW - videoItemW) / 2;
         let ls = $('.video-list-item');
         var prevX = 0;
@@ -77,7 +79,7 @@
             //
         } else {
             for (let i = 0; i < ls.length; i++) {
-                let itemX = $(ls[i]).offset().left - cx;
+                let itemX = $(ls[i]).offset().left - p_off - cx;
                 let o = 1 - Math.abs(itemX / videoItemW);
                 if (o < 0) {
                     o = 0;

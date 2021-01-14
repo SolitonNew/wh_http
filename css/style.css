@@ -1,9 +1,41 @@
 body {
     font-size: 16px;
     font-family: 'Arial';
+    min-height: 100vh;
+}
+
+.body-page-main {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.body-page-left,
+.body-page-center,
+.body-page-right {
+    position: relative;
+    width: 100vw;
+    min-width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding-bottom: 1rem;
-    min-height: 100%;
-    height: 100%;
+}
+
+.body-page-left,
+.body-page-right {
+   display: flex;
+   justify-content: center;
+   padding-top: 45vh;
+}
+
+.body-page-left {
+    border-right: 1px solid rgba(0,0,0,.125);
+}
+
+.body-page-right {
+    border-left: 1px solid rgba(0,0,0,.125);
 }
 
 .btn-outline-primary:active,
@@ -17,9 +49,15 @@ body {
 
 .fixed-nav nav {
     position: fixed;
+    left: 0px;
     top: 0px;
     width: 100%;
     z-index: 100;
+}
+
+.fixed-nav nav .row {
+    display: flex;
+    padding: 0.75rem 2rem;
 }
 
 .fixed-nav #dummyNav {
@@ -250,6 +288,10 @@ body {
 }
 
 @media(min-width: 992px) {
+    .body-page-main {
+        overflow: hidden;
+    }
+    
     .video-list {
         padding: 0 5px;
     }

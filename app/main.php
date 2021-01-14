@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-    <ol class="row breadcrumb" style="display: flex; padding-right: 3rem;">
+    <ol class="row breadcrumb">
         <li style="flex-grow: 1;"><?php print($MAIN_MENUS['main']); ?></li>
         <li><a href="?page=checked"><?php print($MAIN_MENUS['checked']); ?></a></li>
     </ol>
