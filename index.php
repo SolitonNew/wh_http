@@ -209,9 +209,9 @@
                 
                     switch (page) {
                         case 'left':
-                            $('nav').html(window.location.href);
                             let a = window.location.href.split('?');
                             if (a.length <= 1) {
+                                $('nav').html('CLOSE');
                                 window.close();
                             } else {
                                 history.back();
