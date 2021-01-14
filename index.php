@@ -1,6 +1,6 @@
 <?php
     header("Cache-control: public");
-    header("Expires: ".gmdate("D, d M Y H:i:s", time() + 3 * 60)." GMT");
+    header("Expires: ".gmdate("D, d M Y H:i:s", time() + (60 * 60))." GMT");
 
     include 'app/connection.php';
     include 'app/utils.php';
