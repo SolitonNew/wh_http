@@ -31,7 +31,7 @@ body {
 }
 
 .body-page-lock {
-    background-color: #dddddd;
+    background-color: #000000;
 }
 
 .body-page-lock div {
@@ -41,6 +41,22 @@ body {
 .body-page-left,
 .body-page-right {
     align-items: center;
+}
+
+.body-page-left {
+    border-right: 1px solid rgba(0,0,0,.125);
+}
+
+.body-page-right {
+    border-left: 1px solid rgba(0,0,0,.125);
+}
+
+.body-page-lock.body-page-left {
+    border-right: none;
+}
+
+.body-page-lock.body-page-right {
+    border-left: none;
 }
 
 .btn-outline-primary:active,
