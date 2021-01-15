@@ -168,6 +168,7 @@
             let sl = $('.body-page-main').scrollLeft();
             
             if (sl < bodyItemW * 0.75 && lockScrollLeft) {
+                e.preventDefault();
                 $('.body-page-main').scrollLeft(bodyItemW * 0.75);
                 $('.body-page-main').css('overflow-x', 'hidden');
                 setTimeout(() => {
@@ -175,6 +176,7 @@
                 }, 10);
             } else
             if (sl > bodyItemW * 1.25 && lockScrollRight) {
+                e.preventDefault();
                 $('.body-page-main').scrollLeft(bodyItemW * 1.25);
                 $('.body-page-main').css('overflow-x', 'hidden');
                 setTimeout(() => {
