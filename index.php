@@ -173,7 +173,7 @@
                 $('.body-page-main').css('overflow-x', 'hidden');
                 setTimeout(() => {
                     $('.body-page-main').css('overflow-x', 'auto');
-                }, 10);
+                }, 250);
             } else
             if (sl > bodyItemW * 1.25 && lockScrollRight) {
                 e.preventDefault();
@@ -181,7 +181,7 @@
                 $('.body-page-main').css('overflow-x', 'hidden');
                 setTimeout(() => {
                     $('.body-page-main').css('overflow-x', 'auto');
-                }, 10);
+                }, 250);
             }
             
             let itemX = sl - bodyItemW;
