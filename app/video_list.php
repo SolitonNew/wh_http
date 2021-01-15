@@ -40,7 +40,7 @@
         $('.video-list').on('touchend', (e) => {
             setTimeout(() => {
                 $('.body-page-main').css('overflow-x', 'auto');
-            }, 10);
+            }, 1000);
             videoViewCheckAutoscroll();
         });
         
