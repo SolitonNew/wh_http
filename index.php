@@ -165,7 +165,24 @@
     
     $('document').ready(() => {                
         $('.body-page-main').scroll((e) => {
-            let itemX = $('.body-page-main').scrollLeft() - bodyItemW;
+            let sl = $('.body-page-main').scrollLeft();
+            
+            if (sl < bodyItemW * 0.75 && lockScrollLeft) {
+                $('.body-page-main').scrollLeft(bodyItemW * 0.75);
+                $('.body-page-main').css('overflow-x', 'hidden');
+                setTimeout(() => {
+                    $('.body-page-main').css('overflow-x', 'auto');
+                }, 10);
+            } else
+            if (sl > bodyItemW * 1.25 && lockScrollRight) {
+                $('.body-page-main').scrollLeft(bodyItemW * 1.25);
+                $('.body-page-main').css('overflow-x', 'hidden');
+                setTimeout(() => {
+                    $('.body-page-main').css('overflow-x', 'auto');
+                }, 10);
+            }
+            
+            let itemX = sl - bodyItemW;
             let o = 1 - Math.abs(itemX / bodyItemW);
             $('nav').css('opacity', o);
             recalcSpinerPos();
