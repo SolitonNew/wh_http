@@ -145,7 +145,6 @@ foreach ($rows as $row) {
     
 <?php 
     for ($i = 0; $i < count($charts); $i++) {
-        
         $chart = $charts[$i];
 
         $sql = "select UNIX_TIMESTAMP(v.CHANGE_DATE) * 1000 V_DATE, v.VALUE ".
