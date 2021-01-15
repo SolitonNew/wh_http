@@ -32,15 +32,13 @@
             videoViewRecalc();
         }).trigger('resize');
         
-        $('.video-list').on('touchstart', () => {
+        $('.video-list').on('touchstart', (e) => {
             $('.body-page-main').css('overflow-x', 'hidden');
             clearTimeout(videoTimeOutForScroll);
         });
         
         $('.video-list').on('touchend', (e) => {
-            setTimeout(() => {
-                $('.body-page-main').css('overflow-x', 'auto');
-            }, 1000);
+            $('.body-page-main').css('overflow-x', 'auto');
             videoViewCheckAutoscroll();
         });
         

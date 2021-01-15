@@ -12,6 +12,10 @@ body {
     width: 100%;
 }
 
+.body-page-main::-webkit-scrollbar {
+    display: none;
+}
+
 .body-page-left,
 .body-page-center,
 .body-page-right {
