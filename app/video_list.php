@@ -38,8 +38,9 @@
         });
         
         $('.video-list').on('touchend', (e) => {
-            e.preventDefault();
-            $('.body-page-main').css('overflow-x', 'auto');
+            setTimeout(() => {
+                $('.body-page-main').css('overflow-x', 'auto');
+            }, 10);
             videoViewCheckAutoscroll();
         });
         
