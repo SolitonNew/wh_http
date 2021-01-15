@@ -11,6 +11,14 @@ if (count($rows) > 0) {
     $groupTitle = mb_strtoupper($rows[0]['NAME']);
 }
 
+$q = $pdo->query("select VALUE from core_propertys where NAME = 'WEB_COLOR'")->fetchAll();
+$web_color = $q[0]['VALUE'];
+if ($web_color) {
+    $web_color = json_decode($web_color, true);
+} else {
+    $web_color = [];
+}
+
 ?>
 
 <nav aria-label="breadcrumb">
@@ -48,7 +56,7 @@ usort($rows, function ($item1, $item2) {
 });
 
 $charts = [];
-
+$colors = [];
 $varSteps = [];
 
 foreach ($rows as $row) {
@@ -56,6 +64,19 @@ foreach ($rows as $row) {
     $typ = $row['CONTROL']['typ'];
     $resolution = $row['CONTROL']['resolution'];
     $varStep = $row['CONTROL']['varStep'];
+    
+    $color = '';
+    for ($i = 0; $i < count($web_color); $i++) {
+        if (mb_strpos(mb_strtoupper($itemLabel), mb_strtoupper($web_color[$i]['keyword'])) !== false) {
+            $color = $web_color[$i]['color'];
+            if ($color) {
+                $color = "'$color'";
+            }
+            break;
+        }
+    }
+    
+    $colors[] = $color;
     
     $varID = $row['DATA']['ID'];
     $value = $row['DATA']['VALUE'] * $varStep;
@@ -155,6 +176,7 @@ foreach ($rows as $row) {
             datasets: [{
                 data: [<?php print($data_text); ?>],
                 lineTension: 0,
+                <?php if ($colors[$i]) print('backgroundColor: '.$colors[$i]).','; ?>
             }]
         },
         options: {
