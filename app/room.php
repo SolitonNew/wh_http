@@ -167,7 +167,6 @@ foreach ($rows as $row) {
         }
 
         $data_text = join($data, ', ');
-
 ?>
     
     var ctx = document.getElementById("chart_<?php print($chart); ?>");
