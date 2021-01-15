@@ -30,17 +30,17 @@ body {
     opacity: 0;
 }
 
+.body-page-lock {
+    background-color: #dddddd;
+}
+
+.body-page-lock div {
+    opacity: 0;
+}
+
 .body-page-left,
 .body-page-right {
     align-items: center;
-}
-
-.body-page-left {
-    border-right: 1px solid rgba(0,0,0,.125);
-}
-
-.body-page-right {
-    border-left: 1px solid rgba(0,0,0,.125);
 }
 
 .btn-outline-primary:active,

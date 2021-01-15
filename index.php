@@ -19,7 +19,7 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.33">
+        <link rel="stylesheet" href="css/style.css?v=0.0.34">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
@@ -54,13 +54,34 @@
     </div>
     
 <script>
+    var currentPage = '<?php print($page); ?>';
     var isMobile = false;
+    var lockScrollLeft = false;
+    var lockScrollRight = false;
     
     $('document').ready(() => {
         isMobile = (window.orientation !== undefined);
         
+        let a = window.location.href.split('?');
+        lockScrollLeft = a.length <= 1;
+        
+        switch (currentPage) {
+            case 'checked':
+            case 'checked_edit':
+                lockScrollRight = true;
+                break;
+        }
+        
         if (!isMobile) {
             $('.body-page-main').css('overflow', 'hidden');
+        }
+        
+        if (lockScrollLeft) {
+            $('.body-page-left').addClass('body-page-lock');
+        }
+        
+        if (lockScrollRight) {
+            $('.body-page-right').addClass('body-page-lock');
         }
                 
         $('.custom-control-input').on('change', (e) => {
@@ -85,11 +106,7 @@
         loadChanges();
         
         $(window).on('resize', () => {
-            if ($('.body-page-left').css('display') == 'flex') {
-                $('.body-page-main').scrollLeft($('.body-page-left').width());
-            } else {
-                $('.body-page-main').scrollLeft(0);
-            }
+            $('.body-page-main').scrollLeft($('.body-page-left').width());
             
             if ($('nav').length) {
                 $('body').addClass('fixed-nav');
@@ -145,39 +162,18 @@
     var bodyItemW_2 = 0;
     var bodyTimeOutForScroll = false;
     var bodyLastScroll = false;
-    var currentPage = '<?php print($page); ?>';
     
-    $('document').ready(() => {
-        switch (currentPage) {
-            case 'checked':
-            case 'checked_edit':
-                $('.body-page-right').hide();
-                break;
-        }
-        
-        let a = window.location.href.split('?');
-        if (a.length <= 1) {
-            $('.body-page-left').hide();
-        }
-        
-        $('.body-page-main').on('scroll', (e) => {
-            //bodyViewRecalc();
-            
-            let itemX = $('.body-page-main').scrollLeft();
-            if ($('.body-page-left').css('display') == 'flex') {
-                itemX -= bodyItemW;
-            }
+    $('document').ready(() => {                
+        $('.body-page-main').scroll((e) => {
+            let itemX = $('.body-page-main').scrollLeft() - bodyItemW;
             let o = 1 - Math.abs(itemX / bodyItemW);
             $('nav').css('opacity', o);
-            
             recalcSpinerPos();
         });
        
         $(window).on('resize', (e) => {
             bodyItemW = $('.body-page-center').width();
-            bodyItemW_2 = bodyItemW / 2;
-            //bodyViewRecalc();
-            
+            bodyItemW_2 = bodyItemW / 2;           
             recalcSpinerPos();
         }).trigger('resize');
         
@@ -200,49 +196,49 @@
             //
         } else {
             for (let i = 0; i < ls.length; i++) {
-                if ($(ls[i]).css('display') == 'flex') {
-                    let itemX = $(ls[i]).offset().left;
-                    let o = 1 - Math.abs(itemX / bodyItemW);
-                    if (o < 0) {
-                        o = 0;
-                    }
-                    if (o > prevO) {
-                        prevX = itemX;
-                        prevO = o;
-                    }
+                let itemX = $(ls[i]).offset().left;
+                let o = 1 - Math.abs(itemX / bodyItemW);
+                if (o < 0) {
+                    o = 0;
+                }
+                if (o > prevO) {
+                    prevX = itemX;
+                    prevO = o;
                 }
             }
             
             if (prevO > 0) {
                 let s = scrollX + prevX;
-                $('.body-page-main').stop().animate({scrollLeft: s}, 250, () => {
-                    let page = 'center';
-                    if ($('.body-page-left').css('display') == 'flex') {
+                
+                if (s < bodyItemW && lockScrollLeft) {
+                    $('.body-page-main').stop().animate({scrollLeft: bodyItemW});
+                } else
+                if (s > bodyItemW && lockScrollRight) {
+                    $('.body-page-main').stop().animate({scrollLeft: bodyItemW});
+                } else {
+                    $('.body-page-main').stop().animate({scrollLeft: s}, 250, () => {
+                        let page = 'center';
                         if (s < bodyItemW) {
                             page = 'left';
                         } else
                         if (s > bodyItemW) {
                             page = 'right';
                         }
-                    } else {
-                        if (s > 0) {
-                            page = 'right';
+
+                        switch (page) {
+                            case 'left':
+                                history.back();
+                                $('.body-page-main > div').css('opacity', 0);
+                                break;
+                            case 'center':
+                                break;
+                            case 'right':
+                                window.location = '?page=checked';
+                                $('.body-page-main > div').css('opacity', 0);
+                                break;
                         }
-                    }
-                    
-                    switch (page) {
-                        case 'left':
-                            history.back();
-                            $('.body-page-main > div').css('opacity', 0);
-                            break;
-                        case 'center':
-                            break;
-                        case 'right':
-                            window.location = '?page=checked';
-                            $('.body-page-main > div').css('opacity', 0);
-                            break;
-                    }
-                });
+                    });
+                }
             }
         }
     }
