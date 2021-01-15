@@ -240,7 +240,7 @@ foreach ($rows as $row) {
             chartAutoscrollCounter = 0;
         }
         
-        setTimeout(chartAutoScroll, 10000);
+        setTimeout(chartAutoScroll, <?php print($CHART_UPDATE_INTERVAL); ?>);
     }
     
     chartAutoScroll();

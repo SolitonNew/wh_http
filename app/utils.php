@@ -24,6 +24,8 @@ $CONTOL_LABELS = [
     14 => 'ТОК',
 ];
 
+$CHART_UPDATE_INTERVAL = 60 * 1000; // Время обновления графиков
+
 function checkHttpPath($file) {
     print_r($_SERVER);
 }
