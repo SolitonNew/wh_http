@@ -76,8 +76,6 @@ foreach ($rows as $row) {
         }
     }
     
-    $colors[] = $color;
-    
     $varID = $row['DATA']['ID'];
     $value = $row['DATA']['VALUE'] * $varStep;
     
@@ -129,6 +127,7 @@ foreach ($rows as $row) {
         </div>
         <?php 
                 $charts[] = $row['DATA']['ID'];
+                $colors[] = $color;
             } 
         ?>
     </div>
