@@ -32,12 +32,14 @@
             videoViewRecalc();
         }).trigger('resize');
         
-        $('.video-list').on('touchend', () => {
-            videoViewCheckAutoscroll();
+        $('.video-list').on('touchstart', () => {
+            $('.body-page-main').css('overflow-x', 'hidden');
+            clearTimeout(videoTimeOutForScroll);
         });
         
-        $('.video-list').on('touchstart', () => {
-            clearTimeout(videoTimeOutForScroll);
+        $('.video-list').on('touchend', () => {
+            $('.body-page-main').css('overflow-x', 'auto');
+            videoViewCheckAutoscroll();
         });
         
         $('.video-list-item').on('click', (e) => {
