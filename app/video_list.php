@@ -37,7 +37,7 @@
             clearTimeout(videoTimeOutForScroll);
         });
         
-        $('.video-list').on('touchend', () => {
+        $('.video-list').on('touchend', (e) => {
             e.preventDefault();
             $('.body-page-main').css('overflow-x', 'auto');
             videoViewCheckAutoscroll();
