@@ -19,7 +19,7 @@
         <link rel="shortcut icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css?v=0.0.36">
+        <link rel="stylesheet" href="css/style.css?v=0.0.37">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="js/jquery-3.5.1.min.js"></script>
     </head>
@@ -167,21 +167,11 @@
         $('.body-page-main').scroll((e) => {
             let sl = $('.body-page-main').scrollLeft();
             
-            if (sl < bodyItemW * 0.90 && lockScrollLeft) {
-                e.preventDefault();
-                $('.body-page-main').css('overflow-x', 'hidden');
-                //$('.body-page-main').scrollLeft(bodyItemW * 0.75);
-                setTimeout(() => {
-                    $('.body-page-main').css('overflow-x', 'auto');
-                }, 250);
+            if (sl < bodyItemW && lockScrollLeft) {
+                $('.body-page-left').css('opacity', 0.5 - (sl / bodyItemW) / 2);
             } else
-            if (sl > bodyItemW * 1.10 && lockScrollRight) {
-                e.preventDefault();
-                $('.body-page-main').css('overflow-x', 'hidden');
-                //$('.body-page-main').scrollLeft(bodyItemW * 1.25);
-                setTimeout(() => {
-                    $('.body-page-main').css('overflow-x', 'auto');
-                }, 250);
+            if (sl > bodyItemW && lockScrollRight) {
+                $('.body-page-right').css('opacity', ((sl - bodyItemW) / bodyItemW) / 2);
             }
             
             let itemX = sl - bodyItemW;
