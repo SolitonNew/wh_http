@@ -167,7 +167,7 @@
         $('.body-page-main').scroll((e) => {
             let sl = $('.body-page-main').scrollLeft();
             
-            if (sl < bodyItemW * 0.75 && lockScrollLeft) {
+            if (sl < bodyItemW * 0.90 && lockScrollLeft) {
                 e.preventDefault();
                 $('.body-page-main').css('overflow-x', 'hidden');
                 //$('.body-page-main').scrollLeft(bodyItemW * 0.75);
@@ -175,7 +175,7 @@
                     $('.body-page-main').css('overflow-x', 'auto');
                 }, 250);
             } else
-            if (sl > bodyItemW * 1.25 && lockScrollRight) {
+            if (sl > bodyItemW * 1.10 && lockScrollRight) {
                 e.preventDefault();
                 $('.body-page-main').css('overflow-x', 'hidden');
                 //$('.body-page-main').scrollLeft(bodyItemW * 1.25);
