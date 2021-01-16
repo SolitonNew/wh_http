@@ -169,16 +169,16 @@
             
             if (sl < bodyItemW * 0.75 && lockScrollLeft) {
                 e.preventDefault();
-                $('.body-page-main').scrollLeft(bodyItemW * 0.75);
                 $('.body-page-main').css('overflow-x', 'hidden');
+                //$('.body-page-main').scrollLeft(bodyItemW * 0.75);
                 setTimeout(() => {
                     $('.body-page-main').css('overflow-x', 'auto');
                 }, 250);
             } else
             if (sl > bodyItemW * 1.25 && lockScrollRight) {
                 e.preventDefault();
-                $('.body-page-main').scrollLeft(bodyItemW * 1.25);
                 $('.body-page-main').css('overflow-x', 'hidden');
+                //$('.body-page-main').scrollLeft(bodyItemW * 1.25);
                 setTimeout(() => {
                     $('.body-page-main').css('overflow-x', 'auto');
                 }, 250);
