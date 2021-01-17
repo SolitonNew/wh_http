@@ -220,10 +220,16 @@
                 let s = scrollX + prevX;
                 
                 if (s < bodyItemW && lockScrollLeft) {
-                    $('.body-page-main').stop().animate({scrollLeft: bodyItemW});
+                    $('.body-page-main').css('overflow-x', 'hidden');
+                    $('.body-page-main').stop().animate({scrollLeft: bodyItemW}, 250, () => {
+                        $('.body-page-main').css('overflow-x', 'auto');
+                    });
                 } else
                 if (s > bodyItemW && lockScrollRight) {
-                    $('.body-page-main').stop().animate({scrollLeft: bodyItemW});
+                    $('.body-page-main').css('overflow-x', 'hidden');
+                    $('.body-page-main').stop().animate({scrollLeft: bodyItemW}, 250, () => {
+                        $('.body-page-main').css('overflow-x', 'auto');
+                    });
                 } else {
                     $('.body-page-main').stop().animate({scrollLeft: s}, 250, () => {
                         let page = 'center';
