@@ -4,5 +4,5 @@
 </Files>
 
 AuthType Basic
-AuthUserFile app/.htpasswd
+AuthUserFile /home/admin/wh/app/.htpasswd
 Require valid-user
