@@ -18,6 +18,7 @@ switch ($page) {
             $rows = $pdo->query("select c.ID, c.VARIABLE_ID, c.VALUE, UNIX_TIMESTAMP(c.CHANGE_DATE) * 1000 CHANGE_DATE ".
                                 "  from core_variable_changes_mem c ".
                                 " where c.ID > $lastID ".
+                                "   and c.VALUE <> 85 ".
                                 " order by c.ID")->fetchAll();
             return print(json_encode($rows));
         } else {
