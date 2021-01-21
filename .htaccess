@@ -4,5 +4,6 @@
 </Files>
 
 AuthType Basic
-AuthUserFile /home/admin/wh/app/.htpasswd
+AuthName "Password Protected Area"
+AuthUserFile app/.htpasswd
 Require valid-user
