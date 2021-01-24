@@ -148,10 +148,10 @@ foreach ($rows as $row) {
         $chart = $charts[$i];
 
         $sql = "select UNIX_TIMESTAMP(v.CHANGE_DATE) * 1000 V_DATE, v.VALUE ".
-               "  from core_variable_changes v ".
+               "  from core_variable_changes_mem v ".
                " where v.VARIABLE_ID = $chart ".
                "   and v.VALUE <> 85 ".
-               "   and v.CHANGE_DATE > (select max(zz.CHANGE_DATE) from core_variable_changes zz where zz.VARIABLE_ID = $chart) - interval 3 hour".
+               "   and v.CHANGE_DATE > (select max(zz.CHANGE_DATE) from core_variable_changes_mem zz where zz.VARIABLE_ID = $chart) - interval 3 hour".
                " order by v.ID ";
         $q = $pdo->query($sql)->fetchAll();
 
