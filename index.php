@@ -218,7 +218,7 @@
             }
             
             if (prevO > 0) {
-                let s = scrollX + prevX;
+                let s = Math.round(scrollX + prevX);
                 
                 if (s < bodyItemW && lockScrollLeft) {
                     $('.body-page-main').css('overflow-x', 'hidden');
