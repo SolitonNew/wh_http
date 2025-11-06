@@ -1,94 +1,96 @@
 <?php
 
 $MAIN_MENUS = [
-    'main' => 'КОМНАТЫ',
-    'checked' => 'ИЗБРАННОЕ',
-    'checked_edit' => 'НАСТРОЙКИ',
-    'back' => 'НАЗАД'
+    'main' => 'ROOMS',
+    'checked' => 'FAVORITES',
+    'checked_edit' => 'SETTINGS',
+    'back' => 'BACK'
 ];
 
 $CONTOL_LABELS = [
-    1 => 'СВЕТ',
+    1 => 'LIGHT',
     2 => '',
-    3 => 'РОЗЕТКА',
-    4 => 'ТЕРМОМЕТР',
-    5 => 'ТЕРМОСТАТ',
+    3 => 'SOCKET',
+    4 => 'THERMOMETER',
+    5 => 'THERMOSTAT',
     6 => '',
-    7 => 'ВЕНТИЛЯЦИЯ',
+    7 => 'VENTING',
     8 => '',
     9 => '',
-    10 => 'ВЛАЖНОСТЬ',
-    11 => 'СО',
+    10 => 'HUMIDITY',
+    11 => 'CO',
     12 => '',
-    13 => 'Атм. давление',
-    14 => 'ТОК',
+    13 => 'Atm. Pressure',
+    14 => 'CURRENCY',
 ];
 
 $CHART_UPDATE_INTERVAL = 60 * 1000; // Время обновления графиков
 
-function checkHttpPath($file) {
+function checkHttpPath($file)
+{
     print_r($_SERVER);
 }
 
-function decodeAppControl($app_control) {
+function decodeAppControl($app_control)
+{
     $control = '';
     $typ = -1; // 1-label; 2-switch; 3-track;
     $resolution = '';
     $varMin = 0;
     $varMax = 10;
-    $varStep = 1;    
+    $varStep = 1;
     switch ($app_control) {
-        case 1: // Лампочка
-            $control = 'СВЕТ';
+        case 1: // Light
+            $control = 'LIGHT';
             $typ = 2;
             break;
-        case 3: // Розетка
+        case 3: // SOcket
             $control = '';
             $typ = 2;
             break;
-        case 4: // Термометр
-            $control = 'ТЕРМОМЕТР';
+        case 4: // Thermometr
+            $control = 'THERMOMETR';
             $typ = 1;
             $resolution = '°C';
             break;
-        case 5: // Термостат
-            $control = 'ТЕРМОСТАТ';
+        case 5: // Thermostat
+            $control = 'THERMOSTAT';
             $typ = 3;
             $resolution = '°C';
             $varMin = 15;
             $varMax = 30;
             $varStep = 1;
             break;
-        case 7: //Вентилятор
-            $control = 'ВЕНТИЛЯЦИЯ';
+        case 7: //Venting
+            $control = 'VENTING';
             $typ = 3;
             $resolution = '%';
             $varMin = 0;
             $varMax = 100;
             $varStep = 10;
             break;
-        case 10: //Гигрометр
-            $control = 'ВЛАЖНОСТЬ';
+        case 10: //Humidity
+            $control = 'HUMIDITY';
             $typ = 1;
             $resolution = '%';
             break;
-        case 11: // Датчик газа
-            $control = 'СО';
+        case 11: // Gas Sensor
+            $control = 'CO';
             $typ = 1;
             $resolution = 'ppm';
             break;
-        case 13: // Атм. давление
+        case 13: // Atm. pressure
             $control = '';
             $typ = 1;
             $resolution = 'mm';
             break;
-        case 14: // Датчик тока
-            $control = 'ТОК';
+        case 14: // Currency Sensor
+            $control = 'CURRENCY';
             $typ = 1;
             $resolution = 'A';
             break;
     }
-    
+
     return [
         'label' => $control,
         'typ' => $typ,
@@ -99,10 +101,11 @@ function decodeAppControl($app_control) {
     ];
 }
 
-function groupVariableName($groupName, $variableName, $appControlLabel) {
+function groupVariableName($groupName, $variableName, $appControlLabel)
+{
     $resLabel = '';
     if ($appControlLabel != '') {
-        $resLabel = $appControlLabel.' ';
-    }    
+        $resLabel = $appControlLabel . ' ';
+    }
     return $resLabel . mb_strtoupper(str_replace($groupName, '', $variableName));
 }
