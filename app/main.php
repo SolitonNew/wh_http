@@ -59,7 +59,7 @@
          */
         $switches_2 = [
             ' NIGHTLIGHT',
-            ' DINNER'
+            ' DINING'
         ];
 
         for ($i = 0; $i < count($groupList); $i++) {
