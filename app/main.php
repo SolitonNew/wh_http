@@ -9,7 +9,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3" style="flex-grow: 1;">
 
         <?php
-        $sql = 'select * from plan_parts order by NAME, ORDER_NUM';
+        $sql = 'select * from plan_parts order by ORDER_NUM, NAME';
         $groups = $pdo->query($sql)->fetchAll();
 
         $sql = 'select * from core_variables';
