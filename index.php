@@ -111,6 +111,8 @@ if (count($d) > 0) {
                 });
             });
 
+            $('.body-page-main > div').css('opacity', 1);
+
             loadChanges();
 
             $(window).on('resize', () => {
@@ -131,8 +133,6 @@ if (count($d) > 0) {
                     }
                 }
             }).scroll();
-
-            $('.body-page-main > div').css('opacity', 1);
         });
 
         let lastVariableID = <?php print($lastVariableID); ?>;
