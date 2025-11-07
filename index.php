@@ -111,8 +111,6 @@ if (count($d) > 0) {
                 });
             });
 
-            $('.body-page-main > div').css('opacity', 1);
-
             loadChanges();
 
             $(window).on('resize', () => {
@@ -133,6 +131,9 @@ if (count($d) > 0) {
                     }
                 }
             }).scroll();
+
+            $('.body-page-main > div').css('opacity', 1);
+            $('.body-page-main').css('opacity', 1);
         });
 
         let lastVariableID = <?php print($lastVariableID); ?>;
@@ -258,14 +259,14 @@ if (count($d) > 0) {
 
                             switch (page) {
                                 case 'left':
-                                    $('.body-page-main > div').css('opacity', 0);
                                     history.back();
+                                    $('.body-page-main > div').css('opacity', 0);
                                     break;
                                 case 'center':
                                     break;
                                 case 'right':
-                                    $('.body-page-main > div').css('opacity', 0);
                                     window.location = '?page=checked';
+                                    $('.body-page-main > div').css('opacity', 0);
                                     break;
                             }
                         });
