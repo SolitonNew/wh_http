@@ -63,9 +63,7 @@ if (count($d) > 0) {
         var lockScrollLeft = false;
         var lockScrollRight = false;
 
-        $(document).on('unload', () => {}); // Fix for back navigate
-
-        $('document').ready(() => {
+        function initPage() {
             isMobile = (window.orientation !== undefined);
 
             let a = window.location.href.split('?');
@@ -135,7 +133,19 @@ if (count($d) > 0) {
             }).scroll();
 
             $('.body-page-main > div').css('opacity', 1);
+        };
+
+        $('document').ready(() => {
+            initPage();
         });
+
+        // Fix for mobile back navigate
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                initPage();
+            }
+        });
+        // ----------------------------
 
         let lastVariableID = <?php print($lastVariableID); ?>;
 
