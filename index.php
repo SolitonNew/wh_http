@@ -63,6 +63,8 @@ if (count($d) > 0) {
         var lockScrollLeft = false;
         var lockScrollRight = false;
 
+        $(document).unload(() => {}); // Fix for back navigate
+
         $('document').ready(() => {
             isMobile = (window.orientation !== undefined);
 
@@ -133,7 +135,6 @@ if (count($d) > 0) {
             }).scroll();
 
             $('.body-page-main > div').css('opacity', 1);
-            $('.body-page-main').css('opacity', 1);
         });
 
         let lastVariableID = <?php print($lastVariableID); ?>;
