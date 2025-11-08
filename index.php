@@ -63,7 +63,7 @@ if (count($d) > 0) {
         var lockScrollLeft = false;
         var lockScrollRight = false;
 
-        $(document).unload(() => {}); // Fix for back navigate
+        $(document).on('unload', () => {}); // Fix for back navigate
 
         $('document').ready(() => {
             isMobile = (window.orientation !== undefined);
